@@ -5,24 +5,24 @@
 
 ### 0. Algorithm
 
-   코딩테스트 재풀이
+    코딩테스트 재풀이
 
 ### 1. Wine Recognition
 
-   와인 라벨 인식을 통한 재고조사 간편화
+    와인 라벨 인식을 통한 재고조사 간편화
 
 ### 2. Sale Forecast
 
-   백화점 매출 예측
+    백화점 매출 예측
 
 ### 3. Product Recommend
 
-   백화점 내 유사 상품 추천
+    백화점 내 유사 상품 추천
 
 ### 4. GL Recommend
 
-   법인카드 사용내역 별 회계 계정 추천
+    법인카드 사용내역 별 회계 계정 추천
 
 ### 5. Kaggle
 
-   kaggle 수행 내역 및 결과
+    kaggle 수행 내역 및 결과
