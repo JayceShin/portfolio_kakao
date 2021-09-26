@@ -15,13 +15,13 @@
 
     백화점 매출 예측
 
-### 3. Product Recommend
-
-    백화점 내 유사 상품 추천
-
-### 4. GL Recommend
+### 3. GL Recommend
 
     법인카드 사용내역 별 회계 계정 추천
+    
+### 4. Product Recommend
+
+    백화점 내 유사 상품 추천
 
 ### 5. Kaggle
 
