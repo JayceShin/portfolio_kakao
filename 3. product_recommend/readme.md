@@ -10,7 +10,7 @@
 
 [3. 모델링](#3-모델링)
 
-[4. 수행 결과](#4-수행-결과)
+[4. 산출물](#4-)
 ***
 ## 1 프로젝트 개요
 
@@ -63,7 +63,7 @@ Django는 파이썬으로 만들어진 무료 오픈소스 웹 애플리케이�
 REST는 Representational State Transfer의 약자이며, 아래와같이 구성됩니다.
 + 자원(Resource): URI
 + 행위(Verb): HTTP Method
-+ 표현(Representations)
++ 표현(Representations)   
 즉, REST는 URI를 통해 자원을 표시하고, HTTP Method를 이용하여 해당 자원의 행위를 규정하여 그 결과를 받는 것을 말합니다.
 HTTP Method는 크게 GET, POST, PUT, DELETE가 대표적이며, 보통 CRUD에서 조회는 GET, 등록은 POST, 수정은 PUT, 삭제는 DELETE를 이용합니다.
 
