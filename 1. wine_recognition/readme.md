@@ -39,7 +39,7 @@
 **2.2.1 Labeling**   
 와인 라벨 인식을 위한 yolo 모델을 학습하기위하여 각 사진의 라벨에 `label`로 매핑을 시켜주었습니다.   
 
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG" height="509x" width="846px"></p>   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG" height="450x" width="750px"></p>   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918465-c0ee5454-e203-4b6f-86ed-f0b08b791f13.PNG"></p>   
 
 **2.2.2 Word Dictionary**   
