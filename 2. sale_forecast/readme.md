@@ -35,10 +35,10 @@ ex) 2021년 9월 26일의 매출 예측치 = (2018년 9월 26일 매출액 + 201
 
 ### 2.2 전처리
 
-1. 총 매출액   
+2.2.1 총 매출액   
 포스 매출 데이터에서 식품관에 해당하는 품목들로 구성하여 일매출 합계를 산출하였습니다.
 
-2. 행사   
+2.2.2 행사   
 지점에서 발생한 행사들 중 일반 고객에게 해당하는 행사만을 추출하였고, boundary를 통해 행사 기간 전반에 영향을 주도록 하였습니다.
 
 ***
@@ -50,7 +50,7 @@ ex) 2021년 9월 26일의 매출 예측치 = (2018년 9월 26일 매출액 + 201
 
     3월 일매출을 Target으로 예측하였고, 데이터는 일자와 총 매출액 두 가지를 사용하였습니다.
 
-1. Simple Moving Average   
+3.1.1 Simple Moving Average   
 단순이동평균은 특정 기간 동안의 data를 단순 평균하여 계산합니다. 따라서 그 기간 동안의 data를 대표하는 값이 이동평균 안에는 그 동안의 data 움직임을 포함하고 있습니다. 이동평균의 특징인 지연(lag)이 발생하며 수학적으로 n/2 시간 만큼의 지연이 발생합니다. 단순이동평균은 모든 데이터의 중요도를 동일하다고 간주합니다.
 
 ```python
@@ -78,7 +78,7 @@ def make_sma_arr(dataframe, col, start, window):
 result, result2 = make_sma_arr(df_date_sum, 'SALE_AMT',2,4)    
 ```
 
-2. Exponential Moving Average   
+3.1.2 Exponential Moving Average   
 지수이동평균은 가중이동평균 중의 하나로 단순이동평균보다 최근의 데이터에 높은 가중치를 부여하는 방법입니다.
 
 ```python
@@ -106,7 +106,7 @@ def make_emw_arr(dataframe, col, start, window):
 result, result2 = make_emw_arr(df_date_sum, 'SALE_AMT',2,4)
 ```
 
-3. Simple Exponential Smoothing   
+3.1.3 Simple Exponential Smoothing   
 trend나 seasonality 반영을 하지 못하며 level 정도만 수평선으로 나오게 됩니다.
 
 ```python
@@ -118,7 +118,7 @@ y_pred1 = ssm1.fittedvalues
 y_pred2 = ssm2.fittedvalues
 ```
 
-4. Holt-Winter's Exponential Smoothing   
+**3.3.4 Holt-Winter's Exponential Smoothing**   
 trend로 데이터를 예측하기 위해 Simple Exponential Smoothing에서 확장한 것입니다. 예측을 위한 식 외에 level smoothing을 위한 식과 trend smoothing을 위한 식이 포함됩니다. 생성된 예측은 선형적으로 나타나기 때문에 예측 범위가 멀어질 수록 over-forecast 되는 경향이 있다.
 
 ```python
@@ -135,11 +135,11 @@ y_pred2 = holt_fit2.fittedvalues
 
     시계열 예측 모델인 Prophet을 사용하였으며 데이터의 조건을 달리하며 실험하였습니다.
 
-0. Boundary   
+3.2.1 Boundary   
 Outlier를 제거하기위해 금액별 Sorting을 하였고, 상위 1개/ 하위 4개를 제거하도록 Boundary를 지정하였습니다.   
 ![매출_소팅](https://user-images.githubusercontent.com/31294995/134778585-55047d0e-e92f-41cb-93c7-c0c874df69ca.PNG)
 
-1. Basic   
+3.2.2 Basic   
 다른 조건 없이 일자/ 매출액 두 가지 변수로 매출액을 예측하였습니다.
 
 ```python
@@ -149,7 +149,7 @@ model =  Prophet.Prophet(growth='logistic')
 model.fit(df_ml);
 ```
 
-2. Change Point   
+3.2.3 Change Point   
 입력된 데이터들의 추세를 조정하는 인자로 탐색을 통해 찾은 최적값 0.01로 설정하였습니다. 추가적인 추세변경점으로 코로나 일자를 넣었으나 결과에 영향은 없었습니다.
 
 ```python
@@ -159,7 +159,7 @@ model =  Prophet.Prophet(changepoint_prior_scale=0.01)
 model.fit(df_ml);
 ```
 
-3. Holiday   
+3.2.4 Holiday   
 앞서 수집한 공휴일을 redday로 행사일을 evntday로 설정하여 데이터를 형성하였고, 각 Boundary를 주어 해당되는 일자에 전반적으로 영향을 미치도록 하였습니다.
 
 ```python
