@@ -42,6 +42,8 @@
 **2.2.2 Word Dictionary**   
 KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이를 상품코드와 매핑시켜 단어 사전을 준비하였습니다. 이후 Symspell을 통해 단어를 DB에 있는 기존 상품의 단어와 유사하게 교정하였습니다.
 
+📌 *Why use Symspell?*   
+
 ***
 
 ## 3 모델링
@@ -57,7 +59,6 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 > 제공할 서비스는 real time으로 활용할 수 있어야 함으로 Yolo를 선택하였습니다.   
 > + 사용하기도 가장 쉽기 때문이기도 합니다.
 
- 
 📌 *Why detect only 'Label'?*   
 
 > b-box를 통해 객체를 찾는 Object detect 모델 특성상 작은 픽셀의 디테일(년도, 원산지 등)로 구분되는 와인의 특징을 잡아낼 지 의문이었기에 현 단계에서 라벨만 추출한 뒤 다음 단계에서 분류를 진행하는 것을 목표로 하였습니다.   
@@ -65,10 +66,9 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 
 ### 3.2 Logistic
 
+    OCR로 수집한 단어를 Symspell로 전처리한 데이터를 학습데이터로 분류 모델을 사용하였습니다. 목적함수는 multi:softProb를 사용하여 예측의 확률값을 얻고, 이를 다음 모델로 넘어갈지 말지에 대한 판단 기준으로 정하였습니다.
+    
 **3.2.1 TF-IDF vectorize**
-
-📌 *Why use Symspell?*   
-
 
 📌 *vs Count Vector*   
 > 와인 라벨에 의미가 없는 단어들이 포함된 경우가 있었기 때문에 Counter Vector 보다는 다른 라벨에서도 나타나 빈도수가 많은 단어에 대한 보정을 해주는 TF-IDF를 사용하였습니다.
@@ -83,6 +83,8 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 > 물론 Hyper Parameter에 대한 최적값 연구를 하지 못한 점이 가장 큰 문제이긴 하나 Logistic만으로도 만족할 F1-Score가 나왔기 때문에 Xgbclassifier를 사용하지 않았습니다.
 
 ### 3.3 ResNet
+
+    앞선 분류 모델에서 정확도가 낮게 나온 라벨은 와인의 디테일(Text Infomation)이 없는 이미지 라벨이기 떄문에 이미지 분류기로 다시 상품코드를 예측하였습니다.
 
 📌 *vs Other Image Classifier*   
 > ResNet은 Image 분류기의 성능을 높여준 기법이긴 하나 최근에는 이보다 성능이 좋은 알고리즘들이 존재합니다. 그럼에도 ResNet을 사용한 이유는 공부한걸 써먹어보자라는 마음이 컸습니다.   
