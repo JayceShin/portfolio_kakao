@@ -49,9 +49,9 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 ## 3 모델링
     Obejcet Detection과 logistic 및 image 분류기를 연결하여 하나의 모델로 구성하였습니다.
     
-    Step1. Object Detection(Yolo) -> 와인 라벨 추출
-    Step2. 추출한 이미지 -> OCR -> 추출 단어 교정(Symspell) -> 상품코드 예측(Logistic)
-    Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
+Step1. Object Detection(Yolo) -> 와인 라벨 추출
+Step2. 추출한 이미지 -> OCR -> 추출 단어 교정(Symspell) -> 상품코드 예측(Logistic)
+Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
     
 ### 3.1 Yolo
 
