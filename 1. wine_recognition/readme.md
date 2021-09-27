@@ -105,11 +105,11 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 
     Yolo V5 모델을 학습시킨 뒤 이미지가 들어오면 와인의 라벨을 Crop 하도록 설계하였습니다.
  
-📌 vs Other Obeject detecting model (R-CNN, Fast R-CNN, Faster R-CNN)   
+> 📌 * vs Other Obeject detecting model (R-CNN, Fast R-CNN, Faster R-CNN)*   
 
-Yolo model은 1 step의 object detect 모델이므로 다른 모델(2 step)에 비해 정확도는 부족할 수 있으나 속도에 이점이 있습니다.
-제공할 서비스는 real time으로 활용할 수 있어야 함으로 Yolo를 선택하였습니다.   
-(사용하기도 가장 쉽기 때문이기도 합니다.)
+> Yolo model은 1 step의 object detect 모델이므로 다른 모델(2 step)에 비해 정확도는 부족할 수 있으나 속도에 이점이 있습니다.
+> 제공할 서비스는 real time으로 활용할 수 있어야 함으로 Yolo를 선택하였습니다.   
+> (사용하기도 가장 쉽기 때문이기도 합니다.)
 
  
 📌 Why detect only 'Label'?   
