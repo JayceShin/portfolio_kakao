@@ -212,6 +212,7 @@ mAP@.5 = 0.98539 / mAP@.5:95 = 0.82585
 > Macro: mean each label precision   
 > Micro: total TP / total FP + total TP   
 > Wegithed: mean each label precision with proportion   
+> 데이터가 불균형할수록 Micro가 정확한 지표가 됩니다. 데이터가 많은쪽으로 값이 치우치기 때문입니다.
 
 ### 4.3 ResNet
 
