@@ -132,9 +132,26 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 **4.1.3 PR-AUC curve**   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935523-080c8a11-9b42-4b19-b451-dba7d8ea6882.png" height="450x" width="750px"></p>  
 
-📌 *mAP@.5 vs mAP@.5:95?*
+📌 *IoU?*   
+> Intersection over union의 약자로 객체 검출하는 모델의 정확도를 측정하는 지표입니다. ground-truth bounding box와 predicted bounding box를 통해 계산합니다.   
+->image
 
-📌 *ROC AUC Score?*
+📌 *PR graph?*   
+> confidence threshold 값에 따른 IoU로 계산한 precision과 recall의 값의 변화를 그래프로 표현한 것입니다.
+> confidence: 알고리즘이 detect한 것이 정확하다고 나타내는 수치
+> precision: 모든 예측된 바운딩 박스들 중에 옳은 것
+> recall: 전체 정답 바운딩 박스들 중에서 검출한 것   
+
+📌 *ROC vs PR and AUC*   
+> ROC: x-FPR(FP/FP+TN)-1종오류/ y-TPR(TP/TP+FN)
+> PR: x-recall/ y-precision
+> AUC: 그래프 아래 면적
+> ROC AUC: 데이터 균형, 양성(나쁜것)과 음성(좋은것)의 탐지 중요도 비슷
+> PR AUC: 데이터 불균형, 양성(나쁜것)의 탐지가 중요할 때
+
+📌 *mAP@.5 vs mAP@.5:95?*   
+> AP는 threshold에 따라 그려진 PR graph의 넓이입니다.
+> mAP@.5:95는 threshold 0.5와 0.95일때의 AP의 평균입니다.
 
 ### 4.2 Logistic Regression   
 
@@ -155,9 +172,13 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 > + Hyper Parameter에 대한 최적값 연구를 하지 못한 점이 가장 큰 문제이긴 하나 Logistic만으로도 만족할 F1-Score가 나왔기 때문에 Xgbclassifier를 사용하지 않았습니다.
 
 📌 *Bad Reuslt?*   
+> 앞서 예측했던 디테일이 없는 라벨들이 나쁜 결과를 냄을 확인하였습니다.   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935544-ba63f09b-e12f-4710-a852-945be9564103.jpg" height="450x" width="750px"></p>  
 
-📌 *macro vs micro vs weighted?*   
+📌 *Macro vs Micro vs Weighted?*   
+> Macro: mean each label precision
+> Micro: total TP / total FP + total TP
+> Wegithed: mean each label precision with proportion
 
 ### 4.3 ResNet
 
@@ -169,10 +190,18 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935548-57c5d3f8-0ea2-4b9d-90c3-a1dc2a17df35.png" height="450x" width="750px"></p>  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935549-f33612f5-dd81-466a-b66a-2f2096daa880.png" height="450x" width="750px"></p>  
 
+📌 *Accuracy vs Loss?*   
+> Loss는 틀리게 예측한 경우 얼마나 오류를 범했는가에 대한 값이기 때문에 정확도랑 관계가 없습니다.
+
 📌 *Why explore Loss?*   
+> 1. lr이 적절하지 못하게 크다면 optimal minima로 수렴하다가 증가할 수 있습니다.
+> 2. batch를 random하게 추출할때 샘플의 분포에 따라 loss가 증가할 수 있습니다.
 
 📌 *Why ResNet 50 better than 152?*   
+> 우리가 가진 문제는 단순한데 비해 깊은 모델일수록 overfitting의 효과가 있을 수 있기 때문입니다.
 
 📌 *decay option?*   
+> L2 정규화의 효과를 가짐, 특정 가중치가 비이상적으로 커지는(Outlier에 민감) 상황을 방지하기 때문입니다.
 
 📌 *Adam Optimizer?*   
+> 학습한 방향으로 덜 이동하게 learning rate를 줄인다.
