@@ -33,7 +33,7 @@
 ### 2.1 데이터 수집
     갤러리아 한남지점 비노 494에 전시된 일부(26종)의 와인에 대해 각 와인당 약 30장의 사진을 찍었습니다.
 
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918677-9fc8dc73-9f99-4437-918b-d47fcd079eae.jpg" height="300px" width="500px"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918677-9fc8dc73-9f99-4437-918b-d47fcd079eae.jpg" height="509px" width="846px"></p>
 
 ### 2.2 데이터 전처리
     수집한 이미지를 모델 학습을 위한 형태로 바꾸는 작업을 진행하였습니다.
@@ -41,8 +41,7 @@
 **2.2.1 Labeling**   
 와인 라벨 인식을 위한 yolo 모델을 학습하기위하여 각 사진의 라벨에 `label`로 매핑을 시켜주었습니다.   
 
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG" height="509x" width="846px"></p>
-![와인_라벨인식](https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG)
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG" height="509x" width="846px"></p>   
 ![와인_라벨링결과](https://user-images.githubusercontent.com/31294995/134918465-c0ee5454-e203-4b6f-86ed-f0b08b791f13.PNG)
 
 **2.2.2 Word Dictionary**   
