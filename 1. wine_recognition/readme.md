@@ -33,7 +33,7 @@
 ### 2.1 데이터 수집
     갤러리아 한남지점 비노 494에 전시된 일부(26종)의 와인에 대해 각 와인당 약 30장의 사진을 찍었습니다.
 
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918677-9fc8dc73-9f99-4437-918b-d47fcd079eae.jpg" height="100px" width="300px"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918677-9fc8dc73-9f99-4437-918b-d47fcd079eae.jpg" height="500px" width="800px"></p>
 
 ### 2.2 데이터 전처리
     수집한 이미지를 모델 학습을 위한 형태로 바꾸는 작업을 진행하였습니다.
