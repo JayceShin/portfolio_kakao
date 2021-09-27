@@ -110,13 +110,8 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 ### 4.1 Yolo
 
-**학습조건**   
-total image : 528   
-cross validation : 5 K fold   
-image size : 1024 * 1024   
-epoch : 150   
-batch : 32   
 
+📌 *ROC AUC Score?* 
 
 ### 4.2 Logistic Regression
 
