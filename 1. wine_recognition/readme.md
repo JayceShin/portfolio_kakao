@@ -22,7 +22,6 @@
 백화점 내 갤러리아 소속의 지점들은 분기마다 실재고조사를 진행합니다. 이때 바이어들은 재고조사시 모든 와인의 바코드를 PDA로 스캔하여 전산화 시킵니다. 와인샵의 경우 매장에 전시된 와인은 약 1,300종이기 때문에 4명의 직원이 약 7~8 시간의 작업을 통해  재고조사를 수행합니다. 이는 단순업무이지만 와인은 온도에 민감하고 내구성이 좋지 않기 때문에 업무의 강도가 올라가게 됩니다. 따라서 저는 와인 라벨을 인식하고 분류하는 모델을 통해 이를 개선하고자 하였습니다.
 
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918492-e913dce0-34f1-4fe9-8987-9a8b2118117a.png"></p>
-<center>![image001](https://user-images.githubusercontent.com/31294995/134918492-e913dce0-34f1-4fe9-8987-9a8b2118117a.png)</center>
 
 ### 1.2 목표
     와인 라벨 인식 및 분류 모델을 통한 재고조사의 간편화
@@ -33,8 +32,8 @@
 
 ### 2.1 데이터 수집
     갤러리아 한남지점 비노 494에 전시된 일부(26종)의 와인에 대해 각 와인당 약 30장의 사진을 찍었습니다.
-    
-![IMG_1764](https://user-images.githubusercontent.com/31294995/134918677-9fc8dc73-9f99-4437-918b-d47fcd079eae.jpg)
+
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918677-9fc8dc73-9f99-4437-918b-d47fcd079eae.jpg" height="100px" width="300px"></p>
 
 ### 2.2 데이터 전처리
     수집한 이미지를 모델 학습을 위한 형태로 바꾸는 작업을 진행하였습니다.
