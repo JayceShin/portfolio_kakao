@@ -85,7 +85,7 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 📌  *vs Xgboost Classifier*   
 > Xgbclassifier는 일반적으로 Logistic보다 분류의 성능이 좋은 것으로 알려져있습니다. 하지만 모든 경우가 그렇지 않다는 것을 이번 프로젝트를 통해 확인하였습니다.   
-> 물론 Hyper Parameter에 대한 최적값 연구를 하지 못한 점이 가장 큰 문제이긴 하나 Logistic만으로도 만족할 F1-Score가 나왔기 때문에 Xgbclassifier를 사용하지 않았습니다.
+> + Hyper Parameter에 대한 최적값 연구를 하지 못한 점이 가장 큰 문제이긴 하나 Logistic만으로도 만족할 F1-Score가 나왔기 때문에 Xgbclassifier를 사용하지 않았습니다.
 
 ### 3.3 ResNet
 
