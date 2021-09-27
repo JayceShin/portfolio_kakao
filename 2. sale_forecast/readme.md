@@ -14,26 +14,26 @@
 ***
 ## 1 프로젝트 개요
 
-### 배경
+### 1.1 배경
 
 경영자들은 일매출 예측치와 현재 매출액을 비교하는 화면을 통해 경영 및 평가 지표로 삼고 있습니다. 이러한 배경속에 20년 3월 코로나 사태때 백화점 식품관 매출이 감소하면서 일매출 예측치에 한참 못미치는 달성률을 보였고, 해당 부서에서 일매출 예측치에 대한 문의가 들어오게 되었습니다. 따라서 로직을 확인하여보니 단순히 3개년 매출의 평균을 산출하고 있었고, 이는 현상황을 반영하지 못한다고 판단하여 데이터를 기준으로한 매출 예측치를 새로 산출하고자 하였습니다.    
 ex) 2021년 9월 26일의 매출 예측치 = (2018년 9월 26일 매출액 + 2019년 9월 26일 매출액 + 2020년  9월 26일 매출액)/3
 
 ![매출_비교](https://user-images.githubusercontent.com/31294995/134776808-85fce0b9-b3c0-4a6b-a93e-c5abeb81c0d0.jpg)
 
-### 목표
+### 1.2 목표
 
     매출 예측치가 최근 경향을 반영하지 못하기 때문에 데이터를 바탕으로 한 근거있는 매출 목표치를 산출하는 것을 목표로 하였습니다.
 
 ***
 ## 2 데이터 수집 및 전처리
 
-### 데이터 수집
+### 2.1 데이터 수집
 
     DB에서 포스에서 발생한 최근 3년의 매출 데이터를 수집하였습니다.
     이외로 백화점 휴점일, 백화점 행사 그리고 공휴일 데이터를 수집하여 데이터 분석에 사용하였습니다.
 
-### 전처리
+### 2.2 전처리
 
 1. 총 매출액   
 포스 매출 데이터에서 식품관에 해당하는 품목들로 구성하여 일매출 합계를 산출하였습니다.
@@ -46,7 +46,7 @@ ex) 2021년 9월 26일의 매출 예측치 = (2018년 9월 26일 매출액 + 201
 
     시계열 데이터의 예측문제이기 때문에 통계적 방법과 기계학습 방법 두 가지로 접근하였습니다.
 
-### Statistics Modeling
+### 3.1 Statistics Modeling
 
     3월 일매출을 Target으로 예측하였고, 데이터는 일자와 총 매출액 두 가지를 사용하였습니다.
 
@@ -131,7 +131,7 @@ y_pred1 = holt_fit1.fittedvalues
 y_pred2 = holt_fit2.fittedvalues
 ```
 
-### Machin Learning Modeling
+### 3.2 Machin Learning Modeling
 
     시계열 예측 모델인 Prophet을 사용하였으며 데이터의 조건을 달리하며 실험하였습니다.
 
@@ -190,41 +190,41 @@ model.fit(df_ml);
     Large Sclae의 금액 예측 문제이기 때문에 RMSE가 아닌 R2를 평가 기준으로 삼았습니다. 
     R2는 차이가 클 시 (-) 값이 나올 수 있습니다.
 
-### Real Data 
+### 4.1 Real Data 
 
 실제 매출 예측치와 매출액의 차이를 계산한 R2 Score입니다.   
 **R2: -2.194**   
 ![매출_실제](https://user-images.githubusercontent.com/31294995/134778589-8acc6c1b-9ee8-48b2-bfd2-0567386e0001.PNG)
 
-### Statistics Modeling
+### 4.2 Statistics Modeling
 
-1. Simple Moving Average   
+4.2.1 Simple Moving Average   
 **Best R2: 0.688(window size:2)**   
 ![매출_이동평균](https://user-images.githubusercontent.com/31294995/134778593-600fc440-d87d-425b-8b13-51b499ce51be.PNG)
 
-2. Exponential Moving Average   
+4.2.2 Exponential Moving Average   
 **Best R2: 0.884(window size:2)**   
 ![매출_지수평활](https://user-images.githubusercontent.com/31294995/134778592-1296e9c0-05c7-42b3-92d4-245100d796e7.PNG)
 
-3. Simple Exponential Smoothing   
+4.2.3 Simple Exponential Smoothing   
 **Best R2: 0.119(smoothing_level=0.05)**   
 ![매출_심플](https://user-images.githubusercontent.com/31294995/134778591-8102c2e1-653a-49ea-b747-61483c2af665.PNG)
 
-4. Holt-Winter's Exponential Smoothing   
+4.2.4 Holt-Winter's Exponential Smoothing   
 **Best R2: 0.119(smoothing_level=0.8, smoothing_slope=0.3)**   
 ![매출_홀트](https://user-images.githubusercontent.com/31294995/134778590-1f6b13a7-6cfc-46c9-96a5-c46c6fd86960.PNG)
 
-### Machin Learning Modeling
+### 4.3 Machin Learning Modeling
 
-1. Basic   
+4.3.1 Basic   
 **Best R2: 0.111**   
 ![매출_베이직](https://user-images.githubusercontent.com/31294995/134778588-4be0d3cf-fbff-42a1-8d37-adc9c10d98fb.PNG)
 
-2. Change Point   
+4.3.2 Change Point   
 **Best R2: 0.118**   
 ![매출_체인지](https://user-images.githubusercontent.com/31294995/134778587-08c9a037-ff2b-4c26-8ca2-24d3c5e587d0.PNG)
 
-3. Holiday   
+4.3.3 Holiday   
 **Best R2: 0.119**  
 ![매출_휴일](https://user-images.githubusercontent.com/31294995/134778586-5e876dbb-abd5-42dc-b8cf-d3da4fa25948.PNG)
 
