@@ -95,7 +95,7 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 
  
 
-### Yolo
+### 3.1 Yolo
 
     Yolo V5 모델을 학습시킨 뒤 이미지가 들어오면 와인의 라벨을 Crop 하도록 설계하였습니다.
  
@@ -111,9 +111,9 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 > b-box를 통해 객체를 찾는 Object detect 모델 특성상 작은 픽셀의 디테일(년도, 원산지 등)로 구분되는 와인의 특징을 잡아낼 지 의문이었기에 현 단계에서 라벨만 추출한 뒤 다음 단계에서 분류를 진행하는 것을 목표로 하였습니다.   
 > + 실제 Label이 아닌 상품코드 단위로 학습을 시켰을시 Accuracy가 떨어짐을 확인했습니다.
 
-### Logistic
+### 3.2 Logistic
 
-**1. TF-IDF vectorize**
+**3.2.1 TF-IDF vectorize**
 
 📌 *Why use Symspell?*   
 
@@ -124,13 +124,13 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 📌 *vs Prediction Based Embedding (Word2Vec)*
 > 와인 라벨은 문맥적 의미보다는 단어 자체의 중요도가 크기 때문에 횟수 기반 임베딩이 적합하다고 판단하였습니다.
 
-**2. Logistic Regression**
+**3.2.2 Logistic Regression**
 
 📌  *vs Xgboost Classifier*   
 > Xgbclassifier는 일반적으로 Logistic보다 분류의 성능이 좋은 것으로 알려져있습니다. 하지만 모든 경우가 그렇지 않다는 것을 이번 프로젝트를 통해 확인하였습니다.   
 > 물론 Hyper Parameter에 대한 최적값 연구를 하지 못한 점이 가장 큰 문제이긴 하나 Logistic만으로도 만족할 F1-Score가 나왔기 때문에 Xgbclassifier를 사용하지 않았습니다.
 
-### ResNet
+### 3.3 ResNet
 
 📌 *vs Other Image Classifier*   
 > ResNet은 Image 분류기의 성능을 높여준 기법이긴 하나 최근에는 이보다 성능이 좋은 알고리즘들이 존재합니다. 그럼에도 ResNet을 사용한 이유는 공부한걸 써먹어보자라는 마음이 컸습니다.   
