@@ -124,7 +124,37 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 ### 4.1 Yolo
 
-**4.1.1 train description**   
+**4.1.1 train description** 
+```python
+5 Fold cross validation
+label -> "lable"
+
+learning param -> default
+lr0=0.01, lrf=0.2, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=0.05, cls=0.5, cls_pw=1.0, obj=1.0, obj_pw=1.0, iou_t=0.2, anchor_t=4.0, fl_gamma=0.0, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0
+
+batch -> 32/ epoch -> 150
+
+model - 22
+1. mAP@.5 = 0.97602 / mAP@.5:95 = 0.72421
+model - 24
+2. mAP@.5 = 0.9813  / mAP@.5:95 = 0.73432
+model - 25
+3. mAP@.5 = 0.99102 / mAP@.5:95 = 0.7828
+model - 28
+4. mAP@.5 = 0.98122 / mAP@.5:95 = 0.77758
+model - 29
+5. mAP@.5 = 0.90381 / mAP@.5:95 = 0.69221
+
+k-fold result 
+mAP@.5 = 0.96674 / mAP@.5:95 = 0.742224
+
+total test
+model - 30
+train_data - 422
+val_data - 106
+mAP@.5 = 0.98539 / mAP@.5:95 = 0.82585
+
+```
 
 **4.1.2 train result**   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935529-1e1c75ca-e8d7-442f-a563-0177b1e5aa6e.png" height="450x" width="750px"></p>  
@@ -176,9 +206,9 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935544-ba63f09b-e12f-4710-a852-945be9564103.jpg" height="450x" width="750px"></p>  
 
 📌 *Macro vs Micro vs Weighted?*   
-> Macro: mean each label precision
-> Micro: total TP / total FP + total TP
-> Wegithed: mean each label precision with proportion
+> Macro: mean each label precision   
+> Micro: total TP / total FP + total TP   
+> Wegithed: mean each label precision with proportion   
 
 ### 4.3 ResNet
 
