@@ -45,6 +45,13 @@
 **2.2.2 Word Dictionary**   
 KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이를 상품코드와 매핑시켜 단어 사전을 준비하였습니다. 이후 Symspell을 통해 단어를 DB에 있는 기존 상품의 단어와 유사하게 교정하였습니다.
 
+
+📌 *Why use Symspell?*   
+> 기존의 편집거리기준 삽입, 전치, 바꾸기, 삭제의 Peter Norvig 방식은 시간복잡도가 매우 크기 때문에 삭제만을 기준으로 단어사전을 구성해 빠른 연산속도가 장점인 Symspell를 사용하였습니다.
+> + 이는 기존보다 1,000배 빠른 것으로 알려져있습니다.
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134921671-47b6705a-6e9f-41be-b961-9fd4ddb69ba0.png" height="450x" width="750px"></p>  
+
+
 **2.2.3 Image Regularization**   
 ResNet을 진행할때는 아래와같이 이미지를 표준화 해주었습니다.  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935546-f7f52cba-2cd2-4a82-8138-8e5f8e4de7b1.png"></p>
@@ -60,12 +67,6 @@ train_stdR = np.mean([s[0] for s in train_stdRGB])
 train_stdG = np.mean([s[1] for s in train_stdRGB])
 train_stdB = np.mean([s[2] for s in train_stdRGB])
 ```
-
-📌 *Why use Symspell?*   
-> 기존의 편집거리기준 삽입, 전치, 바꾸기, 삭제의 Peter Norvig 방식은 시간복잡도가 매우 크기 때문에 삭제만을 기준으로 단어사전을 구성해 빠른 연산속도가 장점인 Symspell를 사용하였습니다.
-> + 이는 기존보다 1,000배 빠른 것으로 알려져있습니다.
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134921671-47b6705a-6e9f-41be-b961-9fd4ddb69ba0.png" height="450x" width="750px"></p>  
-
 ***
 
 ## 3 모델링
