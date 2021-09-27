@@ -94,7 +94,7 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 📌 *vs Other Image Classifier*   
 > ResNet은 Image 분류기의 성능을 높여준 기법이긴 하나 최근에는 이보다 성능이 좋은 알고리즘들이 존재합니다. 그럼에도 ResNet을 사용한 이유는 공부한걸 써먹어보자라는 마음이 컸습니다.   
-> 기술적인 연구는 하지 못하였지만 SeResNetXt101 모델과 Pre-train된 Weight를 사용하였을때 더 좋은 성능을 보임을 확인하였습니다.   
+> + 기술적인 연구는 하지 못하였지만 SeResNetXt101로 Pre-train된 Weight를 사용하였을때 향상된 성능을 보임을 확인하였습니다.   
 
 ***
 
