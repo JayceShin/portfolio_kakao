@@ -107,7 +107,7 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 
 ## 4 수행 결과
 
-### Yolo
+### 4.1 Yolo
 
 **학습조건**   
 total image : 528   
@@ -117,10 +117,10 @@ epoch : 150
 batch : 32   
 
 
-### Logistic Regression
+### 4.2 Logistic Regression
 
 **학습조건**
 
-### ResNet
+### 4.3 ResNet
 
 **학습조건**
