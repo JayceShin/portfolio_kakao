@@ -134,7 +134,7 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 📌 *IoU?*   
 > Intersection over union의 약자로 객체 검출하는 모델의 정확도를 측정하는 지표입니다. ground-truth bounding box와 predicted bounding box를 통해 계산합니다.   
-->image
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134954715-e43f1c4f-1a4c-4e48-9b86-a19ee1d641ff.PNG" height="450x" width="750px"></p>  
 
 📌 *PR graph?*   
 > confidence threshold 값에 따른 IoU로 계산한 precision과 recall의 값의 변화를 그래프로 표현한 것입니다.
