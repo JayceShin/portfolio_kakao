@@ -33,8 +33,6 @@
 ### 2.1 데이터 수집
     갤러리아 한남지점 비노 494에 전시된 일부(26종)의 와인에 대해 각 와인당 약 30장의 사진을 찍었습니다.
 
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918677-9fc8dc73-9f99-4437-918b-d47fcd079eae.jpg" height="509px" width="846px"></p>
-
 ### 2.2 데이터 전처리
     수집한 이미지를 모델 학습을 위한 형태로 바꾸는 작업을 진행하였습니다.
 
@@ -42,7 +40,7 @@
 와인 라벨 인식을 위한 yolo 모델을 학습하기위하여 각 사진의 라벨에 `label`로 매핑을 시켜주었습니다.   
 
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG" height="509x" width="846px"></p>   
-![와인_라벨링결과](https://user-images.githubusercontent.com/31294995/134918465-c0ee5454-e203-4b6f-86ed-f0b08b791f13.PNG)
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918465-c0ee5454-e203-4b6f-86ed-f0b08b791f13.PNG"></p>   
 
 **2.2.2 Word Dictionary**   
 KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이를 상품코드와 매핑시켜 단어 사전을 준비하였습니다. 이후 Symspell을 통해 단어를 DB에 있는 기존 상품의 단어와 유사하게 교정하였습니다.
@@ -101,7 +99,7 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 > ResNet은 Image 분류기의 성능을 높여준 기법이긴 하나 최근에는 이보다 성능이 좋은 알고리즘들이 존재합니다. 그럼에도 ResNet을 사용한 이유는 공부한걸 써먹어보자라는 마음이 컸습니다.   
 > + 기술적인 연구는 하지 못하였지만 SeResNetXt101로 Pre-train된 Weight를 사용하였을때 향상된 성능을 보임을 확인하였습니다.   
 
-![와인_복잡도](https://user-images.githubusercontent.com/31294995/134918469-b983f163-4586-4d44-9dd6-8103e4d79c62.PNG)
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918469-b983f163-4586-4d44-9dd6-8103e4d79c62.PNG" height="509px" width="846px"></p>
 
 ***
 
