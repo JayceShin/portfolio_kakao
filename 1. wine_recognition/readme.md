@@ -71,21 +71,15 @@
 
  
 
-1. 라벨링
-
+1. Labeling   
 와인 라벨 인식을 위한 yolo 모델을 학습하기위하여 각 사진의 라벨에 `label`로 매핑을 시켜주었습니다.
-
- 
 
 -> 라벨링 하는 이미지 사진
 
  
 
-2. 단어 사전
-
+2. Word Dictionary   
 KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이를 상품코드와 매핑시켜 단어 사전을 준비하였습니다. 이후 Symspell을 통해 단어를 DB에 있는 기존 상품의 단어와 유사하게 교정하였습니다.
-
- 
 
 -> Symspell 사용한 이유?
 
@@ -119,7 +113,7 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 
 ### Logistic
 
-1. TF-IDF vectorize
+**1. TF-IDF vectorize**
 
 📌 *Why use Symspell?*   
 
@@ -130,7 +124,7 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 📌 *vs Prediction Based Embedding (Word2Vec)*
 > 와인 라벨은 문맥적 의미보다는 단어 자체의 중요도가 크기 때문에 횟수 기반 임베딩이 적합하다고 판단하였습니다.
 
-2. Logistic Regression
+**2. Logistic Regression**
 
 📌  *vs Xgboost Classifier*   
 > Xgbclassifier는 일반적으로 Logistic보다 분류의 성능이 좋은 것으로 알려져있습니다. 하지만 모든 경우가 그렇지 않다는 것을 이번 프로젝트를 통해 확인하였습니다.   
