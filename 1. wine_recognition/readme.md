@@ -126,16 +126,52 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 ### 4.1 Yolo
 
-📌 *mAP@.5 vs mAP@.5:95?* 
+4.1.1 train description   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935530-f244aab7-353c-4800-9f9a-392f42fe17ac.PNG" height="450x" width="750px"></p>  
 
-📌 *ROC AUC Score?* 
+4.1.2 train result   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935529-1e1c75ca-e8d7-442f-a563-0177b1e5aa6e.png" height="450x" width="750px"></p>  
 
-### 4.2 Logistic Regression
+4.1.3 PR-AUC curve   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935523-080c8a11-9b42-4b19-b451-dba7d8ea6882.png" height="450x" width="750px"></p>  
 
-📌 *macro vs micro vs weighted?* 
+📌 mAP@.5 vs mAP@.5:95?
+
+📌 ROC AUC Score?
+
+### 4.2 Logistic Regression   
+
+4.2.1 Logistic Result   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935532-db52ec74-58c6-4219-bbf3-15e1dcd367fa.jpg" height="450x" width="750px"></p>   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935533-6f5a9c49-7114-4fe7-9b7c-63efdfd0afc2.PNG" height="450x" width="750px"></p>    
+
+4.2.2 Xgboost Result   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935539-242fba42-e9a6-45ee-bac5-f687e98464b9.jpg" height="450x" width="750px"></p>  
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935541-6fdec6c6-2ef7-4a3d-98cd-b1dd5e9b2c3c.PNG" height="450x" width="750px"></p>  
+
+4.2.3 Xgboost Tuning Result
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935534-78d95b5e-63f5-45eb-8107-fdd1bf0bd553.jpg" height="450x" width="750px"></p>  
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935536-7f31e7f7-e70f-4c63-8b4e-fb9a1e2bf2e2.PNG" height="450x" width="750px"></p>  
+
+📌 Bad Reuslt?   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935544-ba63f09b-e12f-4710-a852-945be9564103.jpg" height="450x" width="750px"></p>  
+
+📌 macro vs micro vs weighted?
 
 ### 4.3 ResNet
 
-📌 *decay option?* 
+4.3.1 ResNet 50 Result
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935552-f01991eb-dc25-4548-a7e2-bf79364660c3.jpg" height="450x" width="750px"></p>  
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935554-de9ae139-abb2-4113-836a-5a0f5af648de.jpg" height="450x" width="750px"></p>  
 
-📌 *Adam Optimizer?* 
+4.3.2 ResNet 152 Result
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935548-57c5d3f8-0ea2-4b9d-90c3-a1dc2a17df35.png" height="450x" width="750px"></p>  
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935549-f33612f5-dd81-466a-b66a-2f2096daa880.png" height="450x" width="750px"></p>  
+
+📌 Why explore Loss?
+
+📌 Why ResNet 50 better than 152?
+
+📌 decay option?
+
+📌 Adam Optimizer?
