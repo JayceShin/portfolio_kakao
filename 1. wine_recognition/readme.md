@@ -36,6 +36,21 @@
 ### 2.2 데이터 전처리
     수집한 이미지를 모델 학습을 위한 형태로 바꾸는 작업을 진행하였습니다.
 
++ ResNet을 진행할때는 아래와같이 이미지를 표준화 해주었습니다.  
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935546-f7f52cba-2cd2-4a82-8138-8e5f8e4de7b1.png"></p>
+
+```python
+train_meanRGB = [np.mean(x.numpy(), axis=(1,2)) for x, _ in train_ds0]
+train_stdRGB = [np.std(x.numpy(), axis=(1,2)) for x, _ in train_ds0]
+
+train_meanR = np.mean([m[0] for m in train_meanRGB])
+train_meanG = np.mean([m[1] for m in train_meanRGB])
+train_meanB = np.mean([m[2] for m in train_meanRGB])
+train_stdR = np.mean([s[0] for s in train_stdRGB])
+train_stdG = np.mean([s[1] for s in train_stdRGB])
+train_stdB = np.mean([s[2] for s in train_stdRGB])
+```
+
 **2.2.1 Labeling**   
 와인 라벨 인식을 위한 yolo 모델을 학습하기위하여 각 사진의 라벨에 `label`로 매핑을 시켜주었습니다.   
 
@@ -110,13 +125,14 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 ### 4.1 Yolo
 
+📌 *mAP@.5 vs mAP@.5:95?* 
 
 📌 *ROC AUC Score?* 
 
 ### 4.2 Logistic Regression
 
-**학습조건**
+📌 *macro vs micro vs weighted?* 
 
 ### 4.3 ResNet
 
-**학습조건**
+📌 *decay option?* 
