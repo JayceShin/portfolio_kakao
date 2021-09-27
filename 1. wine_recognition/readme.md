@@ -36,7 +36,17 @@
 ### 2.2 데이터 전처리
     수집한 이미지를 모델 학습을 위한 형태로 바꾸는 작업을 진행하였습니다.
 
-+ ResNet을 진행할때는 아래와같이 이미지를 표준화 해주었습니다.  
+**2.2.1 Labeling**   
+와인 라벨 인식을 위한 yolo 모델을 학습하기위하여 각 사진의 라벨에 `label`로 매핑을 시켜주었습니다.   
+
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG" height="450x" width="750px"></p>   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918465-c0ee5454-e203-4b6f-86ed-f0b08b791f13.PNG"></p>   
+
+**2.2.2 Word Dictionary**   
+KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이를 상품코드와 매핑시켜 단어 사전을 준비하였습니다. 이후 Symspell을 통해 단어를 DB에 있는 기존 상품의 단어와 유사하게 교정하였습니다.
+
+**2.2.3 Image Regularization**   
+ResNet을 진행할때는 아래와같이 이미지를 표준화 해주었습니다.  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935546-f7f52cba-2cd2-4a82-8138-8e5f8e4de7b1.png"></p>
 
 ```python
@@ -50,15 +60,6 @@ train_stdR = np.mean([s[0] for s in train_stdRGB])
 train_stdG = np.mean([s[1] for s in train_stdRGB])
 train_stdB = np.mean([s[2] for s in train_stdRGB])
 ```
-
-**2.2.1 Labeling**   
-와인 라벨 인식을 위한 yolo 모델을 학습하기위하여 각 사진의 라벨에 `label`로 매핑을 시켜주었습니다.   
-
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918464-40184c90-ab82-43ac-a789-736c102ebff7.PNG" height="450x" width="750px"></p>   
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/134918465-c0ee5454-e203-4b6f-86ed-f0b08b791f13.PNG"></p>   
-
-**2.2.2 Word Dictionary**   
-KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이를 상품코드와 매핑시켜 단어 사전을 준비하였습니다. 이후 Symspell을 통해 단어를 DB에 있는 기존 상품의 단어와 유사하게 교정하였습니다.
 
 📌 *Why use Symspell?*   
 > 기존의 편집거리기준 삽입, 전치, 바꾸기, 삭제의 Peter Norvig 방식은 시간복잡도가 매우 크기 때문에 삭제만을 기준으로 단어사전을 구성해 빠른 연산속도가 장점인 Symspell를 사용하였습니다.
