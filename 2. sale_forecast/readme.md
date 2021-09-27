@@ -118,7 +118,7 @@ y_pred1 = ssm1.fittedvalues
 y_pred2 = ssm2.fittedvalues
 ```
 
-**3.3.4 Holt-Winter's Exponential Smoothing**   
+3.1.3 Holt-Winter's Exponential Smoothing   
 trend로 데이터를 예측하기 위해 Simple Exponential Smoothing에서 확장한 것입니다. 예측을 위한 식 외에 level smoothing을 위한 식과 trend smoothing을 위한 식이 포함됩니다. 생성된 예측은 선형적으로 나타나기 때문에 예측 범위가 멀어질 수록 over-forecast 되는 경향이 있다.
 
 ```python
