@@ -92,8 +92,7 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 ### 3.2 Logistic
 
-    OCR로 수집한 단어를 Symspell로 전처리한 데이터를 학습데이터로 분류 모델을 사용하였습니다.   
-    목적함수는 multi:softProb를 사용하여 예측의 확률값을 얻고, 이를 다음 모델로 넘어갈지 말지에 대한 판단 기준으로 정하였습니다.
+    와인의 디테일인 년도, 원산지 등의 단어 기반의 분류를 진행하였습니다 
     
 **3.2.1 TF-IDF vectorize**
 
@@ -105,9 +104,8 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 
 **3.2.2 Logistic Regression**
 
-📌  *vs Xgboost Classifier*   
-> Xgbclassifier는 일반적으로 Logistic보다 분류의 성능이 좋은 것으로 알려져있습니다. 하지만 모든 경우가 그렇지 않다는 것을 이번 프로젝트를 통해 확인하였습니다.   
-> + Hyper Parameter에 대한 최적값 연구를 하지 못한 점이 가장 큰 문제이긴 하나 Logistic만으로도 만족할 F1-Score가 나왔기 때문에 Xgbclassifier를 사용하지 않았습니다.
+    OCR로 수집한 단어를 Symspell로 전처리한 데이터를 단어사전으로 구성 후 TF-IDF를 통해 행렬화 하여 학습데이터로 사용하였습니다.   
+    목적함수는 multi:softProb를 사용하여 예측의 확률값을 얻고, 이를 다음 모델로 넘어갈지 말지에 대한 판단 기준으로 정하였습니다.
 
 ### 3.3 ResNet
 
@@ -144,33 +142,37 @@ Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935532-db52ec74-58c6-4219-bbf3-15e1dcd367fa.jpg" height="600x" width="750px"></p>   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935533-6f5a9c49-7114-4fe7-9b7c-63efdfd0afc2.PNG" height="100x" width="750px"></p>    
 
-4.2.2 Xgboost Result   
+**4.2.2 Xgboost Result**   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935539-242fba42-e9a6-45ee-bac5-f687e98464b9.jpg" height="600x" width="750px"></p>  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935541-6fdec6c6-2ef7-4a3d-98cd-b1dd5e9b2c3c.PNG" height="100x" width="750px"></p>  
 
-4.2.3 Xgboost Tuning Result
+**4.2.3 Xgboost Tuning Result**   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935534-78d95b5e-63f5-45eb-8107-fdd1bf0bd553.jpg" height="600x" width="750px"></p>  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935536-7f31e7f7-e70f-4c63-8b4e-fb9a1e2bf2e2.PNG" height="100x" width="750px"></p>  
 
-📌 Bad Reuslt?   
+📌  *vs Xgboost Classifier*   
+> Xgbclassifier는 일반적으로 Logistic보다 분류의 성능이 좋은 것으로 알려져있습니다. 하지만 모든 경우가 그렇지 않다는 것을 이번 프로젝트를 통해 확인하였습니다.   
+> + Hyper Parameter에 대한 최적값 연구를 하지 못한 점이 가장 큰 문제이긴 하나 Logistic만으로도 만족할 F1-Score가 나왔기 때문에 Xgbclassifier를 사용하지 않았습니다.
+
+📌 *Bad Reuslt?*   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935544-ba63f09b-e12f-4710-a852-945be9564103.jpg" height="450x" width="750px"></p>  
 
-📌 macro vs micro vs weighted?
+📌 *macro vs micro vs weighted?*   
 
 ### 4.3 ResNet
 
-4.3.1 ResNet 50 Result
+**4.3.1 ResNet 50 Result**   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935552-f01991eb-dc25-4548-a7e2-bf79364660c3.jpg" height="450x" width="750px"></p>  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935554-de9ae139-abb2-4113-836a-5a0f5af648de.jpg" height="450x" width="750px"></p>  
 
-4.3.2 ResNet 152 Result
+**4.3.2 ResNet 152 Result**   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935548-57c5d3f8-0ea2-4b9d-90c3-a1dc2a17df35.png" height="450x" width="750px"></p>  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935549-f33612f5-dd81-466a-b66a-2f2096daa880.png" height="450x" width="750px"></p>  
 
-📌 Why explore Loss?
+📌 *Why explore Loss?*   
 
-📌 Why ResNet 50 better than 152?
+📌 *Why ResNet 50 better than 152?*   
 
-📌 decay option?
+📌 *decay option?*   
 
-📌 Adam Optimizer?
+📌 *Adam Optimizer?*   
