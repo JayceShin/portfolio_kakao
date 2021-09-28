@@ -53,7 +53,7 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 
 
 **2.2.3 Image Regularization**   
-ResNet을 진행할때는 아래와같이 이미지를 표준화 해주었습니다.  
+ResNet을 진행할때는 아래와같이 이미지를  해주었습니다.  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935546-f7f52cba-2cd2-4a82-8138-8e5f8e4de7b1.png"></p>
 
 ```python
@@ -73,7 +73,7 @@ train_stdB = np.mean([s[2] for s in train_stdRGB])
     Obejcet Detection과 logistic 및 image 분류기를 연결하여 하나의 모델로 구성하였습니다.
     
 Step1. Object Detection(Yolo) -> 와인 라벨 추출   
-Step2. 추출한 이미지 -> OCR -> 추출 단어 교정(Symspell) -> 상품코드 예측(Logistic)   
+Step2. 추출한 이미지 -> OCR -> 추출 단어 교정 및 벡터화(Symspell, TF-IDF) -> 상품코드 예측(Logistic)   
 Step3. 추출한 이미지 -> 이미지 분류 및 상품코드 예측(ResNet)   
     
 ### 3.1 Yolo
@@ -185,7 +185,7 @@ mAP@.5 = 0.98539 / mAP@.5:95 = 0.82585
 
 📌 *mAP@.5 vs mAP@.5:95?*   
 > AP는 threshold에 따라 그려진 PR graph의 넓이입니다.   
-> mAP@.5:95는 threshold 0.5와 0.95일때의 AP의 평균입니다.   
+> mAP@.5:95는 threshold 0.5부터 0.95까지의 AP의 평균입니다.   
 
 ### 4.2 Logistic Regression   
 
