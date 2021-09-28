@@ -171,9 +171,9 @@ mAP@.5 = 0.98539 / mAP@.5:95 = 0.82585
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134954715-e43f1c4f-1a4c-4e48-9b86-a19ee1d641ff.PNG" height="450x" width="750px"></p>  
 
 📌 *PR graph?*   
-> confidence threshold 값에 따른 IoU로 계산한 precision과 recall의 값의 변화를 그래프로 표현한 것입니다.
-> confidence: 알고리즘이 detect한 것이 정확하다고 나타내는 수치
-> precision: 모든 예측된 바운딩 박스들 중에 옳은 것
+> confidence threshold 값에 따른 IoU로 계산한 precision과 recall의 값의 변화를 그래프로 표현한 것입니다.   
+> confidence: 알고리즘이 detect한 것이 정확하다고 나타내는 수치   
+> precision: 모든 예측된 바운딩 박스들 중에 옳은 것   
 > recall: 전체 정답 바운딩 박스들 중에서 검출한 것   
 
 📌 *ROC vs PR and AUC*   
