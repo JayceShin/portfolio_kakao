@@ -131,7 +131,7 @@ main.py __name__: __main__
 
     Python은 소스코드를 Bytecode로 컴파일한 다음 인터프리터가 실행함
    
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414137-f55185e7-a7b4-4fbf-b112-8b822e9d26ab.PNG" height="200x" width="550px"></p>   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414137-f55185e7-a7b4-4fbf-b112-8b822e9d26ab.PNG" height="450x" width="750px"></p>   
 
 📌 *Python is Compile lang vs Interpreter lang?*   
 > 표준 파이썬 구현체인 CPython의 인터프리터는 소스코드를 Bytecode로 컴파일 후 처리   
