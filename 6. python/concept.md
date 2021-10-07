@@ -174,12 +174,17 @@ main.py __name__: __main__
 [gil_IMG]
 
     하나의 thread에 모든 자원을 허락하고 그 후에는 Lock을 걸어 다른 thread의 실행을 막음   
-    즉, Single Thread로 동작하게 하는 것
+    즉, Single Thread로 동작하는 뮤텍스의 역할
 
 📌 *Why use GIL?*
 > Python의 reference count를 통한 메모리 관리 때문
 > Multi thread일 경우 reference count를 관리하기 위해 모든 객체에 lock이 필요
 > 이러한 비효율을 막기 위해 하나의 Lock을 통해 모든 객체들의 동기화를 해결
+
+📌 *Mutex vs Semaphore?*
+> 1. Semaphore : 동기화 대상이 하나 이상   
+> 2. Mutex : 동기화 대상이 하나   
+> GIL은 Single Thread Concept이기 때문에 Mutex가 옳은 표현
 
 📌 *How to use Parallel Programming in python?*
 > 1. 다른 Python 사용
@@ -197,6 +202,23 @@ main.py __name__: __main__
 ## 6 Python Memory Management
 
 ### 6.1 Reference Counting
+
+    모든 객체는 참조 당할 때 Reference Count를 증가시키고 참조가 없어질 때 감소   
+    Count가 0이 되면 객체가 메모리에서 해제
+
+📌 *Problem in Reference Counting*
+> 자기 참조 객체는 더이상 접근할 수 없지만 Reference Count는 계속 1인 상황   
+> 즉, 메모리를 해제하지 못함 = Garbage 상태   
+
+### 6.2 Garbage Collector
+
+    Stop the World를 통해 모든 객체를 전수조사하여 Memory management 수행   
+    Reference Counting의 자기 참조 문제를 해결함   
+
+📌 *GC 수행과정*
+> 1. 새로운 객체가 생성되면 메모리와 0세대에 객체를 할당   
+>     - 이 때, 객체수가 0세대 임계값보다 크면 GC 호출   
+> 2. 호출된 GC는 0, 1, 2세대 모두 검사하며 2세대부터 역순으로 진행함
 
 📌 *Memory area*
 [memoryArea_IMG]
@@ -218,7 +240,7 @@ main.py __name__: __main__
 📌 *Heap in Python*
 > C, C++, Java의 경으 malloc 함수를 통해 동적 할당을 사용
 > Python은 동적할당 기능이 없음
-> 즉, 사용자가 메모리 할당 범위를 조정하지 않음
+> 즉, 사용자가 메모리 할당 범위를 조정하지 않음   
 > Why? 자동 메모리 관리를 해주기 때문
 > Python Memory Manager가 포인터를 움직여 힙 영역의 메모리 할당 범위와 내부 버퍼 조정
 > 이는 C API를 통해 동적 관리하는 것
