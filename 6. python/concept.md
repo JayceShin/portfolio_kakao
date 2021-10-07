@@ -2,7 +2,7 @@
 
 📖 **목차**
 
-[1. Advantage of Python & PEP](#1-Advantage-of-Python-&-PEP)
+[1. Advantage of Python and PEP](#1-Advantage-of-Python-and-PEP)
 
 [2. “Call by Value” vs "Call by reference"](#2-Call-by-Value-vs-Call-by-reference)
 
@@ -12,7 +12,7 @@
 
 ***
 
-## 1 Advantage of Python & PEP
+## 1 Advantage of Python and PEP
 
 ### 1.1 Advantage of Python
     1. 변수 데이터 유형을 언급할 필요가 없음   
