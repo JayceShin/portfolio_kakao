@@ -92,6 +92,8 @@ hello.py __name__: hello
 hello 모듈 끝
 main.py __name__: __main__
 ```
+
+### Result
     hello.py 파일과 main.py 파일의 __name__ 변수 값이 출력
 
 ### 3.1 Reason   
