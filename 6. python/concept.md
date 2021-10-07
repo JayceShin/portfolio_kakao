@@ -4,9 +4,9 @@
 
 [1. Advantage of Python and PEP](#1-Advantage-of-Python-and-PEP)
 
-[2. “Call by Value” vs "Call by reference"](#2-Call-by-Value-vs-Call-by-reference)
+[2. Call by Value vs Call by reference](#2-Call-by-Value-vs-Call-by-reference)
 
-[3. 모델링](#3-모델링)
+[3. Main and Name](#3-Main-and-Name)
 
 [4. 수행 결과](#4-수행-결과)
 
@@ -68,3 +68,39 @@ set id 1749281406792
 after, outer_list = ['we', 'like', 'proper', 'English']
 after id 1749281406600
 ```
+
+## 3 Main and Name
+
+### hello.py
+```python
+print('hello 모듈 시작')
+print('hello.py __name__:', __name__)    # __name__ 변수 출력
+print('hello 모듈 끝')
+```
+
+### main.py
+```python
+import hello    # hello 모듈을 가져옴
+ 
+print('main.py __name__:', __name__)    # __name__ 변수 출력
+```
+
+### output
+```python
+hello 모듈 시작
+hello.py __name__: hello
+hello 모듈 끝
+main.py __name__: __main__
+```
+    hello.py 파일과 main.py 파일의 __name__ 변수 값이 출력
+
+### 3.1 Reason   
+1. import로 모듈을 가져오면 해당 스크립트 파일이 한 번 실행   
+2. hello 모듈을 가져오면 hello.py 안의 코드가 실행   
+3. hello.py의 __name__ 변수에는 'hello'가 들어가고, main.py의 __name__ 변수에는 '__main__'   
+
+### 3.2 Interpretation   
+1. __name__ 은 모듈의 이름이 저장되는 변수이며 import로 모듈을 가져왔을 때 모듈의 이름이 들어감   
+2. 파이썬 인터프리터로 스크립트 파일을 직접 실행했을 때는 모듈의 이름이 아니라 '__main__'이 들어감   
+3. __name__ 변수를 통해 현재 스크립트 파일이 시작점인지 모듈인지 판단   
+4. if __name__ == '__main__':은 현재 스크립트 파일이 프로그램의 시작점이 맞는지 판단하는 작업   
