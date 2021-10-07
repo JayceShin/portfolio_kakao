@@ -2,7 +2,7 @@
 
 📖 **목차**
 
-[1. Advantage of Python & PEP](#1-Advantage of Python & PEP)
+[1. Advantage of Python & PEP](#1-Advantage-of-Python-&-PEP)
 
 [2. “Call by Value” vs "Call by reference"](#2-데이터-수집-및-전처리)
 
