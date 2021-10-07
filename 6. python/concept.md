@@ -24,11 +24,19 @@
     최신 Python 코딩 표준으로 읽기 쉬운 코드를 제공하도록 안내함
 
 ## 2 Call by Value vs Call by reference
+
+    Python은 passed by assignment
+
 1. passed by assignment : 어떤 값을 전달하느냐에 따라 다름   
 2. 불변(int, str) 타입의 객체를 넘기면 call by value   
 3. 가변 객체를 넘기면 call by reference      
 
-📌 call-by-value
+📌 *call-by-value*
 > 값에 의한 호출방식은 함수 호출시 전달되는 변수의 값을 복사하여 함수의 인자로 전달   
 복사된 인자는 함수 안에서 지역적으로 사용되는 local value의 특성을 가짐   
 따라서 함수 안에서 인자의 값이 변경되어도, 외부의 변수의 값은 변경되지 않음   
+
+📌 *call-by-reference*
+> 참조에 의한 호출방식은 함수 호출시 인자로 전달되는 변수의 레퍼런스를 전달 (해당 변수를 가르킴.)   
+따라서 함수 안에서 인자의 값이 변경되면, 아규먼트로 전달된 객체의 값도 함께 변경됨   
+
