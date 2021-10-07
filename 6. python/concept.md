@@ -129,10 +129,10 @@ main.py __name__: __main__
 
 ### 4.2 Python Works   
 
-<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414137-f55185e7-a7b4-4fbf-b112-8b822e9d26ab.PNG" height="450x" width="750px"></p>   
-
     Python은 소스코드를 Bytecode로 컴파일한 다음 인터프리터가 실행함
    
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414137-f55185e7-a7b4-4fbf-b112-8b822e9d26ab.PNG" height="200x" width="550px"></p>   
+
 📌 *Python is Compile lang vs Interpreter lang?*   
 > 표준 파이썬 구현체인 CPython의 인터프리터는 소스코드를 Bytecode로 컴파일 후 처리   
 통상적으로 인터프리터 언어라고 하지만 이는 반쪽짜리 정답
