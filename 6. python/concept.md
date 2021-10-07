@@ -12,7 +12,7 @@
 
 [5. GIL](#5-GIL)
 
-[6. Garbage Collection](#6-Garbage-Collection)
+[6. Python Memory Management](#6-Python-Memory-Management)
 ***
 
 ## 1 Advantage of Python and PEP
@@ -25,6 +25,8 @@
 
 ### 1.2 PEP
     최신 Python 코딩 표준으로 읽기 쉬운 코드를 제공하도록 안내함
+
+***
 
 ## 2 Call by Value vs Call by reference
 
@@ -71,6 +73,7 @@ set id 1749281406792
 after, outer_list = ['we', 'like', 'proper', 'English']
 after id 1749281406600
 ```
+***
 
 ## 3 Main and Name
 
@@ -110,6 +113,8 @@ main.py __name__: __main__
 3. name 변수를 통해 현재 스크립트 파일이 시작점인지 모듈인지 판단   
 4. if name == 'main':은 현재 스크립트 파일이 프로그램의 시작점이 맞는지 판단하는 작업   
 
+***
+
 ## 4 Python Working Concept
 
 ### 4.1 Compiler vs Interpreter
@@ -144,6 +149,8 @@ main.py __name__: __main__
 > 1. 추상클래스는 실체 클래스의 공통적인 부분을 추출해 규경을 잡아놓은 추상적인 클래스
 > 2. 메서드의 내용이 추상적이기 때문에 객체를 생성할 수 없음
 > 3. 추상클래스와 실체 클래스는 상속 관계
+
+***
 
 ## 5 GIL
 
@@ -182,4 +189,37 @@ main.py __name__: __main__
 >     - CPU가 바쁘게 계산하는 일들은 numpy 같은 라이브러리로 GIL 바깥에서 구현
 > 4. 기다리기..
 
-## 6 Garbage Collection
+📌 *고찰*
+> 이러이러해서 의문
+
+***
+
+## 6 Python Memory Management
+
+### 6.1 Reference Counting
+
+📌 *Memory area*
+[memoryArea_IMG]
+> 1. Code
+>     - 실행할 프로그램의 코드가 저장   
+>     - 코드 영역에 저장된 명령어를 CPU가 하나씩 처리   
+> 2. Data
+>     - 전역변수와 정적변수를 저장하는 공간   
+>     - 프로그램 할당
+> 3. Stack
+>     - 지역변수와 매개변수를 저장하는 공간
+>     - 함수의 호출과 함께 할당되며 호출 완료시 소멸
+>     - 컴파일 타임에 미리 결정
+> 4. Heap
+>     - 동적 할당으로 생성되는 공간
+>     - 사용자가 공간의 크기를 직접 관리
+>     - 런타임에 사용자가 결정
+
+📌 *Heap in Python*
+> C, C++, Java의 경으 malloc 함수를 통해 동적 할당을 사용
+> Python은 동적할당 기능이 없음
+> 즉, 사용자가 메모리 할당 범위를 조정하지 않음
+> Why? 자동 메모리 관리를 해주기 때문
+> Python Memory Manager가 포인터를 움직여 힙 영역의 메모리 할당 범위와 내부 버퍼 조정
+> 이는 C API를 통해 동적 관리하는 것
+> 메모리 할당에 있어 OS의 과부하를 줄여주는 방식
