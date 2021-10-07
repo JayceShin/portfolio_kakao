@@ -4,7 +4,7 @@
 
 [1. Advantage of Python & PEP](#1-Advantage-of-Python-&-PEP)
 
-[2. “Call by Value” vs "Call by reference"](#2-데이터-수집-및-전처리)
+[2. “Call by Value” vs "Call by reference"](#2-“Call-by-Value”-vs-"Call-by-reference")
 
 [3. 모델링](#3-모델링)
 
@@ -22,3 +22,8 @@
 
 ### 1.2 PEP
     최신 Python 코딩 표준으로 읽기 쉬운 코드를 제공하도록 안내함
+
+## 2 “Call by Value” vs "Call by reference"
+1. passed by assignment : 어떤 값을 전달하느냐에 따라 다름   
+2. 불변(int, str) 타입의 객체를 넘기면 call by value   
+3. 가변 객체를 넘기면 call by reference      
