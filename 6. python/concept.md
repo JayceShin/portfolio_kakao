@@ -12,6 +12,7 @@
 
 [5. GIL](#5-GIL)
 
+[6. Garbage Collection](#6-Garbage-Collection)
 ***
 
 ## 1 Advantage of Python and PEP
@@ -165,7 +166,8 @@ main.py __name__: __main__
 ### 5.2 GIL(Global Interpreter Lock)
 [gil_IMG]
 
-    하나의 thread에 모든 자원을 허락하고 그 후에는 Lock을 걸어 다른 thread의 실행을 막음
+    하나의 thread에 모든 자원을 허락하고 그 후에는 Lock을 걸어 다른 thread의 실행을 막음   
+    즉, Single Thread로 동작하게 하는 것
 
 📌 *Why use GIL?*
 > Python의 reference count를 통한 메모리 관리 때문
@@ -179,3 +181,5 @@ main.py __name__: __main__
 > 3. 업무의 분할
 >     - CPU가 바쁘게 계산하는 일들은 numpy 같은 라이브러리로 GIL 바깥에서 구현
 > 4. 기다리기..
+
+## 6 Garbage Collection
