@@ -129,7 +129,7 @@ main.py __name__: __main__
 
 ### 4.2 Python Works   
 
-[compile_IMG]
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414137-f55185e7-a7b4-4fbf-b112-8b822e9d26ab.PNG" height="450x" width="750px"></p>   
 
     Python은 소스코드를 Bytecode로 컴파일한 다음 인터프리터가 실행함
    
@@ -154,9 +154,9 @@ main.py __name__: __main__
 
 ## 5 GIL
 
-### 5.1 Single Thread vs Multi Thread
+### 5.1 Single Thread vs Multi Thread   
 
-[tread_IMG]
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414152-3f355c39-6b2d-4ffd-a91b-2e0a154648cf.PNG" height="450x" width="750px"></p>   
 
 1. Single Thread  
    - 단일 쓰레드를 사용하는 프로세스는 별도로 쓰레드 관리를 하지 않아 코딩이 용이   
@@ -168,10 +168,10 @@ main.py __name__: __main__
    - Context switching 및 동기화 문제가 있음      
 
 📌 *Multi-core Programming?*   
-[multicore_Img]
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414151-3ba83e1a-81eb-4341-85f6-a7e8948201cc.PNG" height="450x" width="750px"></p>   
 
-### 5.2 GIL(Global Interpreter Lock)   
-[gil_IMG]   
+### 5.2 GIL(Global Interpreter Lock)    
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414145-403d133a-bf6a-43b4-84d9-f4eb9ed0f362.PNG" height="450x" width="750px"></p>   
 
     하나의 thread에 모든 자원을 허락하고 그 후에는 Lock을 걸어 다른 thread의 실행을 막음   
     즉, Single Thread로 동작하는 뮤텍스의 역할
@@ -224,7 +224,7 @@ main.py __name__: __main__
 > 2. 호출된 GC는 0, 1, 2세대 모두 검사하며 2세대부터 역순으로 진행함
 
 📌 *Memory area*   
-[memoryArea_IMG]   
+<p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414149-20e65e06-5140-48a3-a26b-0a8eee78aef5.PNG" height="450x" width="750px"></p>   
 > 1. Code
 >     - 실행할 프로그램의 코드가 저장   
 >     - 코드 영역에 저장된 명령어를 CPU가 하나씩 처리   
