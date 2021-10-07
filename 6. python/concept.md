@@ -225,6 +225,7 @@ main.py __name__: __main__
 
 📌 *Memory area*   
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/136414149-20e65e06-5140-48a3-a26b-0a8eee78aef5.PNG" height="450px" width="400px"></p>   
+
 > 1. Code
 >     - 실행할 프로그램의 코드가 저장   
 >     - 코드 영역에 저장된 명령어를 CPU가 하나씩 처리   
