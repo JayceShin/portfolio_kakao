@@ -40,8 +40,8 @@
 > 참조에 의한 호출방식은 함수 호출시 인자로 전달되는 변수의 레퍼런스를 전달 (해당 변수를 가르킴.)   
 따라서 함수 안에서 인자의 값이 변경되면, 아규먼트로 전달된 객체의 값도 함께 변경됨   
 
+### code   
 ```python
--code-
 def try_to_change_list_reference(the_list):
     print('got', the_list)
     print('got id', id(the_list))
@@ -55,8 +55,10 @@ print('before id', id(outer_list))
 try_to_change_list_reference(outer_list)
 print('after, outer_list =', outer_list)
 print('after id', id(outer_list))
+```
 
--output-
+### output   
+```python
 before, outer_list = ['we', 'like', 'proper', 'English']
 before id 1749281406600
 got ['we', 'like', 'proper', 'English']
