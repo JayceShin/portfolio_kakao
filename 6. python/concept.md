@@ -167,16 +167,16 @@ main.py __name__: __main__
    - 프로세스를 병렬 처리하여 향상된 사용자 응답 제공 및 자원을 효율적으로 사용함   
    - Context switching 및 동기화 문제가 있음      
 
-📌 *Multi-core Programming?* 
+📌 *Multi-core Programming?*   
 [multicore_Img]
 
-### 5.2 GIL(Global Interpreter Lock)
-[gil_IMG]
+### 5.2 GIL(Global Interpreter Lock)   
+[gil_IMG]   
 
     하나의 thread에 모든 자원을 허락하고 그 후에는 Lock을 걸어 다른 thread의 실행을 막음   
     즉, Single Thread로 동작하는 뮤텍스의 역할
 
-📌 *Why use GIL?*
+📌 *Why use GIL?*   
 > Python의 reference count를 통한 메모리 관리 때문
 > Multi thread일 경우 reference count를 관리하기 위해 모든 객체에 lock이 필요
 > 이러한 비효율을 막기 위해 하나의 Lock을 통해 모든 객체들의 동기화를 해결
@@ -220,8 +220,8 @@ main.py __name__: __main__
 >     - 이 때, 객체수가 0세대 임계값보다 크면 GC 호출   
 > 2. 호출된 GC는 0, 1, 2세대 모두 검사하며 2세대부터 역순으로 진행함
 
-📌 *Memory area*
-[memoryArea_IMG]
+📌 *Memory area*   
+[memoryArea_IMG]   
 > 1. Code
 >     - 실행할 프로그램의 코드가 저장   
 >     - 코드 영역에 저장된 명령어를 CPU가 하나씩 처리   
@@ -238,7 +238,7 @@ main.py __name__: __main__
 >     - 런타임에 사용자가 결정
 
 📌 *Heap in Python*
-> C, C++, Java의 경으 malloc 함수를 통해 동적 할당을 사용
+> C, C++, Java의 경우 malloc 함수를 통해 동적 할당을 사용
 > Python은 동적할당 기능이 없음
 > 즉, 사용자가 메모리 할당 범위를 조정하지 않음   
 > Why? 자동 메모리 관리를 해주기 때문
