@@ -5,7 +5,7 @@
 
 ### 0. Algorithm
 
-    코딩테스트 재풀이
+    파이썬 알고리즘 코딩
 
 ### 1. Wine Recognition
 
