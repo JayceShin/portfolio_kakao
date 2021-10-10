@@ -18,7 +18,12 @@ class Bubble:
                     if array[j-1] > array[j]:
                         self.swap(array, j-1, j)
         else:
-            pass
+            for i in range(len(array)-1):
+                for j in range(1, len(array)-i):
+                    now = array[j-1]
+                    compare = array[j]
+                    if array[j-1] < array[j]:
+                        self.swap(array, j-1, j)
 
     # noinspection PyMethodMayBeStatic
     def swap(self, array, i, j):
