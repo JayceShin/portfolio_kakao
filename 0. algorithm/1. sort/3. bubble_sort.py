@@ -1,6 +1,6 @@
 class Bubble:
-    def __init__(self):
-        pass
+    def __init__(self, array):
+        self.array = array
 
     # point "처음 인덱스", "밀어"
     # 계속 "처음 인덱스"부터 시작하여 한칸씩 큰수/작은수를 뒤로 "밀어"낸다
@@ -9,21 +9,17 @@ class Bubble:
     # compare : a[j-1] & a[j]
     # 모든 경우 다 돌기 때문에 시간복잡도 일정
     # => O(N^2)
-    def sort(self, array, direction):
+    def sort(self, direction):
         if direction == "asc":
-            for i in range(len(array)-1):
-                for j in range(1, len(array)-i):
-                    now = array[j-1]
-                    compare = array[j]
-                    if array[j-1] > array[j]:
-                        self.swap(array, j-1, j)
+            for i in range(len(self.array)-1):
+                for j in range(1, len(self.array)-i):
+                    if self.array[j-1] > self.array[j]:
+                        self.swap(self.array, j-1, j)
         else:
-            for i in range(len(array)-1):
-                for j in range(1, len(array)-i):
-                    now = array[j-1]
-                    compare = array[j]
-                    if array[j-1] < array[j]:
-                        self.swap(array, j-1, j)
+            for i in range(len(self.array)-1):
+                for j in range(1, len(self.array)-i):
+                    if self.array[j-1] < self.array[j]:
+                        self.swap(self.array, j-1, j)
 
     # noinspection PyMethodMayBeStatic
     def swap(self, array, i, j):
@@ -34,6 +30,6 @@ class Bubble:
 
 if __name__ == '__main__':
     a = [2, 1, 5, 4, 3]
-    bubble = Bubble()
-    bubble.sort(a, "asc")
+    bubble = Bubble(a)
+    bubble.sort("asc")
     print(a)
