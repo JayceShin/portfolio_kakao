@@ -2,40 +2,50 @@ import math
 
 
 class Merge:
-    def __init__(self, list):
-        self.list = list
+    def __init__(self, array):
+        self.array = array
 
+    # point
+    # 1. left(i)가 mid가 될 때 까지
+    # 2. mid+1(j)이 right가 될 때 까지
+    # 3. 변경 시작 지점(start)은 left
+    # 4. 남아있는 것(i!=mid & j!=right)도 옮겨줌
+    # 5. temp를 array에 덮어 씌움
     def merge(self, left, mid, right):
 
         i = left
         j = mid+1
         start = left
-        temp = [None for i in range(0, len(self.list))]
+        temp = [None for i in range(0, len(self.array))]
 
         while i <= mid and j <= right:
-            if self.list[i] < self.list[j]:
-                temp[start] = self.list[i]
+            if self.array[i] < self.array[j]:
+                temp[start] = self.array[i]
                 start = start + 1
                 i = i + 1
             else:
-                temp[start] = self.list[j]
+                temp[start] = self.array[j]
                 start = start+1
                 j = j + 1
 
         while i == mid:
-            temp[start] = self.list[i]
+            temp[start] = self.array[i]
             i = i+1
             start = start+1
 
         while j == right:
-            temp[start] = self.list[j]
+            temp[start] = self.array[j]
             j = j+1
             start = start+1
 
         for i in range(len(temp)):
             if temp[i] is not None:
-                self.list[i] = temp[i]
+                self.array[i] = temp[i]
 
+    # point
+    # left 먼저 쭉 내려 간 뒤에 right랑 하나씩 병합
+    # 시간복잡도는 합병 단계수 * 비교
+    # => O(nlogn)
     def sort(self, left, right):
         # left right 같아지는 시점이 종료지점
         if left < right:
