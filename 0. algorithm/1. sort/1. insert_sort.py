@@ -1,6 +1,6 @@
 class Insert:
-    def __init__(self):
-        pass
+    def __init__(self, array):
+        self.array = array
 
     # point "자기자리", "삽입", "앞이 정렬되었으면 그만"
     # 두번째 인자부터 한칸씩 앞이랑 비교하면서 "자기자리"를 찾아 "삽입"한다
@@ -10,23 +10,23 @@ class Insert:
     # => BEST O(N)
     # 최악은 역순일 경우 각 반복마다 비교 이동이 발생
     # => WORST O(N^2)
-    def sort(self, array, direction):
+    def sort(self, direction):
         if direction == "asc":
-            for i in range(1, len(array)):
-                now = array[i]
+            for i in range(1, len(self.array)):
+                now = self.array[i]
                 for j in range(1, i+1):
-                    compare = array[i-j]
+                    compare = self.array[i-j]
                     if now < compare:
-                        self.swap(array, i-j, i-j+1)
+                        self.swap(self.array, i-j, i-j+1)
                     else:
                         break
         else:
-            for i in range(1, len(array)):
-                now = array[i]
+            for i in range(1, len(self.array)):
+                now = self.array[i]
                 for j in range(1, i+1):
-                    compare = array[i-j]
+                    compare = self.array[i-j]
                     if now > compare:
-                        self.swap(array, i-j, i-j+1)
+                        self.swap(self.array, i-j, i-j+1)
                     else:
                         break
 
@@ -39,6 +39,6 @@ class Insert:
 
 if __name__ == '__main__':
     a = [2, 1, 5, 4, 3]
-    insert = Insert()
-    insert.sort(a, "asc")
+    insert = Insert(a)
+    insert.sort("asc")
     print(a)
