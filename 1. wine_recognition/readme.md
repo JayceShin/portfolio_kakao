@@ -53,7 +53,7 @@ KAKAO OCR API를 통해 와인에 적혀있는 텍스트를 추출하였고, 이
 
 
 **2.2.3 Image Regularization**   
-ResNet을 진행할때는 아래와같이 이미지를  해주었습니다.  
+ResNet을 진행할때는 아래와같이 이미지를 정규화 해주었습니다.  
 <p align="center"><img src="https://user-images.githubusercontent.com/31294995/134935546-f7f52cba-2cd2-4a82-8138-8e5f8e4de7b1.png"></p>
 
 ```python
