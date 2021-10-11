@@ -107,7 +107,11 @@ random_grid = {'n_estimators': n_estimators,
                'min_samples_split': min_samples_split,
                'min_samples_leaf': min_samples_leaf,
                'bootstrap': bootstrap}
-pprint(random_grid)
+               
+rf = RandomForestClassifier()
+rf_random = RandomizedSearchCV(estimator = rf, param_distributions = random_grid, n_iter = 100, cv = 3, verbose=2, random_state=42, n_jobs = -1)
+rf_random.fit(X_train, y_train)
+rf_random.best_params_
 ```
 [그림]
 
@@ -136,11 +140,15 @@ random_grid = { 'n_estimators': n_estimators,
                 'gamma' : gamma,
                 'subsample' :subsample,
                 'colsample_bytree' : colsample_bytree}
-pprint(random_grid)
+
+xgb = XGBClassifier(learning_rate=0.02, n_estimators=600, objective='multi:softmax', silent=True, nthread=1)
+xgb_random = RandomizedSearchCV(estimator = xgb, param_distributions = random_grid, n_iter = 100, cv = 3, verbose=2, random_state=42, n_jobs = -1)
+xgb_random.fit(X_train, y_train)
+xgb_random.best_params_ 
 ```
 [그림]
 
-### MLP
+### 3.2 MLP
 
 
 1. Parameter   
