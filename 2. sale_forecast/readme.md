@@ -141,8 +141,7 @@ fig = decomposition.plot()
 fig.set_size_inches(10,10)
 plt.show()
 ```
-
-[그림]
+![arima_분해](https://user-images.githubusercontent.com/31294995/136822429-07462004-56d2-425e-ab12-58cf4dfc5e27.PNG)   
 
 3.2.2 Stationarity 파악   
 ARIMA 모델을 사용하기 위해서는 데이터가 Stationary 해야 하기 때문에 ACF, PACF plot를 살펴보았습니다.   
@@ -153,8 +152,7 @@ fig.suptitle('Raw Data')
 sm.graphics.tsa.plot_acf(train_data.values.squeeze(), lags=30, ax=ax[0])
 sm.graphics.tsa.plot_pacf(train_data.values.squeeze(), lags=30, ax=ax[1])
 ```
-
-[그림]
+![ARIMA_ACF](https://user-images.githubusercontent.com/31294995/136822426-b2ac7935-b024-493d-900c-d14887e8110e.PNG)   
 
 3.2.3 Differencing   
 앞서 살펴본 ACF 그래프가 조금 애매하였기 때문에 Differencing을 통해 Data를 Statinary하도록 변형하였습니다.   
@@ -164,9 +162,9 @@ diff_train_data = train_data.copy()
 diff_train_data = diff_train_data['SALE_AMT'].diff()
 diff_train_data = diff_train_data.dropna()
 ```
-[그림1]
+![arima_diff](https://user-images.githubusercontent.com/31294995/136822424-fb9857d9-929a-4577-83a2-0ddae5f73651.PNG)   
 
-[그림2]
+![arima_diff_acf](https://user-images.githubusercontent.com/31294995/136822421-4ee248ea-f07e-4879-b993-f749f69cd850.PNG)   
 
 lag가 1일때 눈에 띄게 감소하였기 때문에 확실한 Stationary를 갖고 있다고 판단하였습니다.
 
@@ -273,11 +271,11 @@ model.fit(df_ml);
 ### 4.3 ARIMA
 
 4.3.1 BEST RESULT
-[그림]
+![arima_best_result](https://user-images.githubusercontent.com/31294995/136822417-83084886-2a40-4a6f-b16f-6c642d5199e3.PNG)   
 
 4.3.2 Predict Graph & R2 score
 **Best R2: -0.33**   
-[그림]
+![arima_best_result2](https://user-images.githubusercontent.com/31294995/136822410-5e3111e5-edf9-4bb8-abfb-ce207779d301.PNG)   
 
 ### 4.4 Prophet
 
