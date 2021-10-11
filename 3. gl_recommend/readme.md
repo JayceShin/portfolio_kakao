@@ -233,7 +233,7 @@ class MulticlassClassification(nn.Module):
 ![3Layer](https://user-images.githubusercontent.com/31294995/136828274-f3f40193-2c44-493c-a255-b6bc013af7c3.PNG)   
 
 3. Confusion Matrix(3Layer)   
-Underfitting의 그래프이기에 모델 복잡도를 올려 5Layer로 진행 하여 보았습니다.
+Underfitting의 그래프이기에 모델 복잡도를 올려 5Layer로 진행 하여 보았습니다.   
 ![5layer](https://user-images.githubusercontent.com/31294995/136828277-588d73a3-f9af-4045-9a0a-56a842613543.PNG)   
 
 ### Result
