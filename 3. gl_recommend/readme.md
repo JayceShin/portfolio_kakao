@@ -113,7 +113,7 @@ rf_random = RandomizedSearchCV(estimator = rf, param_distributions = random_grid
 rf_random.fit(X_train, y_train)
 rf_random.best_params_
 ```
-[그림]
+![rf_best](https://user-images.githubusercontent.com/31294995/136828271-4d847ec6-6965-441f-a5a3-5dd3cfcda386.PNG)   
 
 ### 3.1.2 Xgboost
 
@@ -147,7 +147,7 @@ xgb_random = RandomizedSearchCV(estimator = xgb, param_distributions = random_gr
 xgb_random.fit(X_train, y_train)
 xgb_random.best_params_ 
 ```
-[그림]
+![xgb_best](https://user-images.githubusercontent.com/31294995/136828295-8a412278-f70d-4282-84c3-4a7d51886ecf.PNG)   
 
 ### 3.2 MLP
 
@@ -210,25 +210,38 @@ class MulticlassClassification(nn.Module):
 
 ### Random Forest
 
+1. Confusion Matrix Graph   
+![rf_matrix](https://user-images.githubusercontent.com/31294995/136828300-19adb388-ebe6-48a6-ae40-963410dc9fc9.PNG)   
+
+2. Confusion Matrix Result   
+![rf_result](https://user-images.githubusercontent.com/31294995/136828297-19f05c36-7a46-44c9-9cef-cde390f4607b.PNG)   
+
 ### xgboost
 
-1. Basic   
-![회계_basic](https://user-images.githubusercontent.com/31294995/134775328-4cb2304c-7f98-4dc3-87e5-8b80241f05d4.png)
+1. Confusion Matrix Graph   
+![xgb_matrix](https://user-images.githubusercontent.com/31294995/136828294-9e8b31fe-9705-4212-80d1-3fd55584e3ec.PNG)   
 
-2. Under Sampling   
-![회계_under](https://user-images.githubusercontent.com/31294995/134775326-3b2b7c31-f384-4089-8c60-b79726cd7409.png)
-
-3. Over Sampling   
-![회계_over](https://user-images.githubusercontent.com/31294995/134775324-631a0098-fed4-440d-9c46-a6b964ae345d.png)
+2. Confusion Matrix Result   
+![xgb_result](https://user-images.githubusercontent.com/31294995/136828286-f7830d35-4ac3-4ebb-854f-7be11cb08239.PNG)   
 
 ### MLP
 
 1. train vs val Accuracy & Loss   
-![회계_mlp_train](https://user-images.githubusercontent.com/31294995/134775322-05fcfc07-272f-4af2-9767-9e8af4407dd9.PNG)
+![회계_mlp_train](https://user-images.githubusercontent.com/31294995/134775322-05fcfc07-272f-4af2-9767-9e8af4407dd9.PNG)   
 
-2. Confusion Matrix   
-![mlp](https://user-images.githubusercontent.com/31294995/134775327-7ce65f6e-a6cd-4706-a8ef-7ef17ba2bf3a.png)
+2. Confusion Matrix(3Layer)   
+![3Layer](https://user-images.githubusercontent.com/31294995/136828274-f3f40193-2c44-493c-a255-b6bc013af7c3.PNG)   
+
+3. Confusion Matrix(3Layer)   
+Underfitting의 그래프이기에 모델 복잡도를 올려 5Layer로 진행 하여 보았습니다.
+![5layer](https://user-images.githubusercontent.com/31294995/136828277-588d73a3-f9af-4045-9a0a-56a842613543.PNG)   
 
 ### Result
-    XGBClassfier와 기본 데이터를 통해 나온 0.66을 Best 모델로 선정하였습니다.
+
+1. Variable Importance   
+기계학습의 결과를 통해 얻은 모델의 변수 중요도를 Permutation을 통해 산출해 보았습니다.   
+
+2. Result
+기계학습의 성능이 MLP 보다 나음을 알 수 있었습니다.   
+수집한 변수가 설명력이 부족하였기 때문에 높은 결과를 얻지 못한 것 같습니다.
 ***
