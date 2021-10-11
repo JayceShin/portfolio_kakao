@@ -270,10 +270,10 @@ model.fit(df_ml);
 
 ### 4.3 ARIMA
 
-4.3.1 BEST RESULT
+4.3.1 BEST RESULT   
 ![arima_best_result](https://user-images.githubusercontent.com/31294995/136822417-83084886-2a40-4a6f-b16f-6c642d5199e3.PNG)   
 
-4.3.2 Predict Graph & R2 score
+4.3.2 Predict Graph & R2 score   
 **Best R2: -0.33**   
 ![arima_best_result2](https://user-images.githubusercontent.com/31294995/136822410-5e3111e5-edf9-4bb8-abfb-ce207779d301.PNG)   
 
