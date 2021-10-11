@@ -128,16 +128,74 @@ y_pred0 = holt_fit0.fittedvalues
 y_pred1 = holt_fit1.fittedvalues
 y_pred2 = holt_fit2.fittedvalues
 ```
+### 3.2 ARIMA
 
-### 3.2 Machin Learning Modeling
+    시계열 예측 모델인 ARIMA를 통해 매출액을 예측하였습니다.
+
+3.2.1 데이터 분해   
+일 매출 예측이기 때문에 주기를 1로 두었고, 이로인해 별다른 특징을 파악하지 못하였습니다.
+
+```python
+decomposition = sm.tsa.seasonal_decompose(df['SALE_AMT'], model='additive', freq=1)
+fig = decomposition.plot()
+fig.set_size_inches(10,10)
+plt.show()
+```
+
+[그림]
+
+3.2.2 Stationarity 파악   
+ARIMA 모델을 사용하기 위해서는 데이터가 Stationary 해야 하기 때문에 ACF, PACF plot를 살펴보았습니다.   
+
+```python
+fig, ax = plt.subplots(1,2,figsize=(10,5))
+fig.suptitle('Raw Data')
+sm.graphics.tsa.plot_acf(train_data.values.squeeze(), lags=30, ax=ax[0])
+sm.graphics.tsa.plot_pacf(train_data.values.squeeze(), lags=30, ax=ax[1])
+```
+
+[그림]
+
+3.2.3 Differencing   
+앞서 살펴본 ACF 그래프가 조금 애매하였기 때문에 Differencing을 통해 Data를 Statinary하도록 변형하였습니다.   
+
+```python
+diff_train_data = train_data.copy()
+diff_train_data = diff_train_data['SALE_AMT'].diff()
+diff_train_data = diff_train_data.dropna()
+```
+[그림1]
+
+[그림2]
+
+lag가 1일때 눈에 띄게 감소하였기 때문에 확실한 Stationary를 갖고 있다고 판단하였습니다.
+
+3.2.4 Sequential Search   
+마지막으로 Best Parameter를 찾기 위해 순차적 접근을 진행하였습니다.
+
+```python
+p = range(0,4)
+d = range(1,2)
+q = range(0,3)
+pdq = list(itertools.product(p,d,q))
+aic=[]
+
+for i in pdq:
+    model = ARIMA(train_data.values, order=i)
+    model_fit = model.fit()
+    print(f'ARIMA: {i} >> AIC : {round(model_fit.aic,2)}')
+    aic.append(round(model_fit.aic,2))
+```
+
+### 3.3 Prophet
 
     시계열 예측 모델인 Prophet을 사용하였으며 데이터의 조건을 달리하며 실험하였습니다.
 
-3.2.1 Boundary   
+3.3.1 Boundary   
 Outlier를 제거하기위해 금액별 Sorting을 하였고, 상위 1개/ 하위 4개를 제거하도록 Boundary를 지정하였습니다.   
 ![매출_소팅](https://user-images.githubusercontent.com/31294995/134778585-55047d0e-e92f-41cb-93c7-c0c874df69ca.PNG)
 
-3.2.2 Basic   
+3.3.2 Basic   
 다른 조건 없이 일자/ 매출액 두 가지 변수로 매출액을 예측하였습니다.
 
 ```python
@@ -147,7 +205,7 @@ model =  Prophet.Prophet(growth='logistic')
 model.fit(df_ml);
 ```
 
-3.2.3 Change Point   
+3.3.3 Change Point   
 입력된 데이터들의 추세를 조정하는 인자로 탐색을 통해 찾은 최적값 0.01로 설정하였습니다. 추가적인 추세변경점으로 코로나 일자를 넣었으나 결과에 영향은 없었습니다.
 
 ```python
@@ -157,7 +215,7 @@ model =  Prophet.Prophet(changepoint_prior_scale=0.01)
 model.fit(df_ml);
 ```
 
-3.2.4 Holiday   
+3.3.4 Holiday   
 앞서 수집한 공휴일을 redday로 행사일을 evntday로 설정하여 데이터를 형성하였고, 각 Boundary를 주어 해당되는 일자에 전반적으로 영향을 미치도록 하였습니다.
 
 ```python
@@ -212,7 +270,16 @@ model.fit(df_ml);
 **Best R2: 0.119(smoothing_level=0.8, smoothing_slope=0.3)**   
 ![매출_홀트](https://user-images.githubusercontent.com/31294995/134778590-1f6b13a7-6cfc-46c9-96a5-c46c6fd86960.PNG)
 
-### 4.3 Machin Learning Modeling
+### 4.3 ARIMA
+
+4.3.1 BEST RESULT
+[그림]
+
+4.3.2 Predict Graph & R2 score
+**Best R2: -0.33**   
+[그림]
+
+### 4.4 Prophet
 
 4.3.1 Basic   
 **Best R2: 0.111**   
