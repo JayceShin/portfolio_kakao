@@ -64,43 +64,17 @@
 ***
 ## 3 모델링
 
-    분류문제이기 때문에 기계학습 방식의 XGBClassifier와 Pytorch를 사용한 MLP Classifier를 구성하였습니다.
+    ML과 NN 방식을 통해 모델을 구성하였습니다.
 
-### Xgboost
-    
+### 3.1 Machine Learning   
+
+    ML 방식으로는 Random Forest와 XGBClassifier를 사용해 분류기를 구성하였습니다.
+
 1. RandomizerSerach & K-fold    
 최적 파라미터값을 찾기 위해 RandomizerSearch를 사용하였습니다. 일반적으로 모든 조합을 찾는 GridSearch보다 성능은 떨어질지 몰라도 조합을 무작위로 추출하는 RandomizerSearch가 시간 면에서 효율적이라고 판단하였기 때문입니다. 또한 검증을 위해 3 fold를 사용하였습니다.
 
 ![회계_grid](https://user-images.githubusercontent.com/31294995/134774544-069449ee-868d-4b55-b3da-29a90b5cb1b4.PNG)
 ref <https://medium.com/@peterworcester_29377/a-comparison-of-grid-search-and-randomized-search-using-scikit-learn-29823179bc85>
-
-```python
-folds = 3
-param_comb = 5
-params = {
-        'min_child_weight': [1, 5, 10],
-        'gamma': [0.5, 1, 1.5, 2, 5],
-        'subsample': [0.6, 0.8, 1.0],
-        'colsample_bytree': [0.6, 0.8, 1.0],
-        'max_depth': [3, 4, 5]
-        }
-        
-# Param describe
-# gamma 트리에서 가지를 추가로 치기 위해 필요한 최소한의 손실 감소 기준. 기준값이 클 수록 모형이 더 단순해진다.(> 0)
-# max_depth 트리의 최대 깊이.(> 0)
-# min_child_weight 트리에서 가지를 추가로 치기 위해 필요한 최소한의 사례 수.(> 0)
-# subsample 각각의 트리를 만들 때 데이터에서 사용할 행(row)의 비율(0 ~ 1)
-# colsample_bytree 각각의 트리를 만들 때 데이터에서 사용할 열(column)의 비율(0 ~ 1)
-
-skf = StratifiedKFold(n_splits=folds, shuffle = True, random_state = 1001)
-random_search = RandomizedSearchCV(xgb, param_distributions=params, n_iter=param_comb, scoring='f1_micro', 
-                                    n_jobs=4, cv=skf.split(X_train,y_train), 
-                                    verbose=3, random_state=1001, return_train_score=bool )
-
-start_time = timer(None)
-random_search.fit(X_train,y_train)
-timer(start_time)
-```
 
 2. Sampling(Under/ Over)   
 데이터 분포를 살펴보았을때 아래와 같이 불균형 문제가 있음을 확인하였습니다. 따라서 언더/ 오버 샘플링 과정을 통한 결과도 확인하여 높은 스코어를 선택하도록 하였습니다.
@@ -113,6 +87,57 @@ X_under, y_under = RandomUnderSampler(random_state=0).fit_resample(X_train, y_tr
 # over sample
 X_samp_smote, y_samp_smote = SMOTE(random_state=4).fit_resample(X_train, y_train)
 ```
+
+### 3.1.1 Random Forest
+
+1. Hyper Parameter Search   
+```python
+n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
+max_features = ['auto', 'sqrt']
+max_depth = [int(x) for x in np.linspace(10, 110, num = 11)]
+max_depth.append(None)
+min_samples_split = [2, 5, 10]
+min_samples_leaf = [1, 2, 4]
+bootstrap = [True, False]
+
+random_grid = {'n_estimators': n_estimators,
+               'max_features': max_features,
+               'max_depth': max_depth,
+               'min_samples_split': min_samples_split,
+               'min_samples_leaf': min_samples_leaf,
+               'bootstrap': bootstrap}
+pprint(random_grid)
+```
+[그림]
+
+### 3.1.2 Xgboost
+
+1. Hyper Parameter Search   
+```python
+min_child_weight =[1, 5, 10]
+gamma = [0.5, 1, 1.5, 2, 5]
+subsample = [0.6, 0.8, 1.0]
+colsample_bytree = [0.6, 0.8, 1.0]
+n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
+max_features = ['auto', 'sqrt']
+max_depth = [3, 4, 5]
+min_samples_split = [2, 5, 10]
+min_samples_leaf = [1, 2, 4]
+bootstrap = [True, False]
+
+random_grid = { 'n_estimators': n_estimators,
+                'max_features': max_features,
+                'max_depth': max_depth,
+                'min_samples_split': min_samples_split,
+                'min_samples_leaf': min_samples_leaf,
+                'bootstrap': bootstrap,
+                'min_child_weight' : min_child_weight,
+                'gamma' : gamma,
+                'subsample' :subsample,
+                'colsample_bytree' : colsample_bytree}
+pprint(random_grid)
+```
+[그림]
 
 ### MLP
 
@@ -129,7 +154,9 @@ NUM_CLASSES = 13
 ```
 
 2. Network   
-분류기 네트워크 구성은 아래와 같습니다.
+분류기 네트워크 구성은 아래와 같습니다.   
+
+2.1 3 Layer   
 ```python
 class MulticlassClassification(nn.Module):
     def __init__(self, num_feature, num_class):
@@ -165,7 +192,11 @@ class MulticlassClassification(nn.Module):
         
         return x
 ```
-![회계_네트워크](https://user-images.githubusercontent.com/31294995/134775058-4acd2d7d-f191-4453-9b85-014956366d51.PNG)
+![회계_네트워크](https://user-images.githubusercontent.com/31294995/134775058-4acd2d7d-f191-4453-9b85-014956366d51.PNG)   
+
+
+2.2 5 Layer   
+
 
 ***
 ## 4 수행 결과
