@@ -33,7 +33,7 @@
 
     회계 전표처리 DB에서 최근 3년의 법인카드 사용내역 및 전표에 대한 데이터를 수집하였습니다.   
     데이터 수집시 상위 10개의 계정코드가 전체 90%의 분포를 차지하고, 나머지는 sparse하게 나타났기에   
-    13개의 계정코드만을 대상으로 진행하였습니다.
+    10개의 계정코드만을 대상으로 진행하였습니다.
 
 ![회계_데이터](https://user-images.githubusercontent.com/31294995/134773991-00d80d96-068e-467e-9c82-85a88037f627.PNG)
 
@@ -53,13 +53,14 @@
 이를 활용하기 위해 사용시간이 전표 계정에 미치는 영향을 파악해보았고, 몇 가지 특징을 추려낼 수 있었습니다. 
 가장 강한 특징은 사용 시간에 따라 특정 계정이 많이 사용된다는 것이었습니다. 
 주로 점심, 저녁 등의 시간에 사용되면 업무시식대, 저녁 이후시간에는 접대비 그리고 이외 사용시간에는 사무에 관련된 계정들이 사용됨을 확인할 수 있었습니다. 
-따라서 시간대를 총 4분류하여 해당 시간마다 labeling을 해주었습니다. 또한 사용일이 말일에 가까워질수록 여러 공과금 계정에 대한 비용계정이 사용되는 빈도가 높아짐을 확인하였으므로 사용일 또한 3분류하여 labeling을 진행하였습니다.
+따라서 시간대를 총 6분류하여 해당 시간마다 labeling을 해주었습니다. 또한 사용일이 말일에 가까워질수록 여러 공과금 계정에 대한 비용계정이 사용되는 빈도가 높아질 것이라 판단하였으므로 사용일 또한 3분류하여 labeling을 진행하였습니다.
 
 4. 금액    
 금액은 사용금액, 부가세로 나누어지며 다른 인코딩된 데이터들보다 단위가 크기 때문에 StandardScaler로 조정하였습니다. 이는 평균 0 , 분산 1로 조정하는 효과가 있습니다.
 
 5. 카테고리 변수   
-수집한 데이터는 대부분이 카테고리 변수였습니다. 이를 활용하기 위해 인코딩 과정이 필요했으므로 각 데이터의 특성에 맞추어 one-hot 또는 label 인코딩을 진행하였습니다.
+수집한 데이터는 대부분이 카테고리 변수였습니다. 이를 활용하기 위해 인코딩 과정이 필요했으므로 각 모델의 특성에 맞추어 one-hot 또는 label 인코딩을 진행하였습니다.   
+Tree 모델에서는 label Encoding을 하였고 Network 모델에서는 one-hot Encoding을 해주었습니다.
 
 ***
 ## 3 모델링
@@ -197,11 +198,62 @@ class MulticlassClassification(nn.Module):
 
 2.2 5 Layer   
 
+```python
+class MulticlassClassification(nn.Module):
+    def __init__(self, num_feature, num_class):
+        super(MulticlassClassification, self).__init__()
+        
+        self.layer_1 = nn.Linear(num_feature, 1024)
+        self.layer_2 = nn.Linear(1024, 512)
+        self.layer_3 = nn.Linear(512, 256)
+        self.layer_4 = nn.Linear(256, 128)
+        self.layer_5 = nn.Linear(128, 64)
+        self.layer_out = nn.Linear(64, num_class) 
+        
+        self.relu = nn.ReLU()
+        self.dropout = nn.Dropout(p=0.2)
+        self.batchnorm1 = nn.BatchNorm1d(1024)
+        self.batchnorm2 = nn.BatchNorm1d(512)
+        self.batchnorm3 = nn.BatchNorm1d(256)
+        self.batchnorm4 = nn.BatchNorm1d(128)
+        self.batchnorm5 = nn.BatchNorm1d(64)
+        
+    def forward(self, x):
+        x = self.layer_1(x)
+        x = self.batchnorm1(x)
+        x = self.relu(x)
+        
+        x = self.layer_2(x)
+        x = self.batchnorm2(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+        
+        x = self.layer_3(x)
+        x = self.batchnorm3(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+        
+        x = self.layer_4(x)
+        x = self.batchnorm4(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+
+        x = self.layer_5(x)
+        x = self.batchnorm5(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+
+        x = self.layer_out(x)
+        
+        return x
+```
 
 ***
 ## 4 수행 결과
 
     분류 문제이기 때문에 Confusion Matrix를 통해 산출된 Accuracy를 평가 기준으로 삼았습니다.
+
+### Random Forest
 
 ### xgboost
 
