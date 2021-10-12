@@ -10,20 +10,26 @@ def solution(startHight, descentRate):
     for i in range(lenHeight):
         a = startHight[i]
         b = descentRate[i]
+        # 부술수 있는 시간의 한계
         temp = round(a/b)
         timePerCount[temp] = timePerCount[temp]+1
+        # 들어온 입력중 가장 긴 한계 시간
         if temp > maxCount:
             maxCount = temp
 
     saveCount = 0
 
     for j in range(1, len(timePerCount)):
+        # 초를 늘려간다
         saveCount = saveCount + 1
 
         if timePerCount[j] != 0:
+            # 저장된 초(여유시간)과 해당 시간이 한계인 것들 중 최소값을 구한다
             defeat = min(saveCount, timePerCount[j])
             ans = ans + defeat
-
+            
+            # 저장시간이 더 적을 경우 못 부순 비행기가 있음 -> stop
+            # 현재 (j)시점 이후로 부셔야할 비행기가 없으면 끝 -> stop
             if saveCount < timePerCount[j] or maxCount < j:
                 break
 
