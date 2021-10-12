@@ -19,7 +19,7 @@ def solution(n, a, cards):
             queue.append(cards[i])
 
     match = int(len(queue)/2)
-    nowGame = 0
+    nowgame = 0
     before = None
 
     while queue:
@@ -27,64 +27,61 @@ def solution(n, a, cards):
         if len(queue) == 1:
             break
 
-        if match == nowGame:
+        if match == nowgame:
             if len(queue) % 2 != 0:
                 temp = queue.popleft()
                 queue.append(temp)
 
-            nowGame = 0
+            nowgame = 0
             match = int(len(queue)/2)
             continue
+        
+        nowcard = queue.popleft()
+        nextcard = queue.popleft()
 
-        nowCard = queue.popleft()
-        nextCard = queue.popleft()
+        if nowcard == nextcard:
+            # 일반 카드가 비기면 둘다 빠짐
+            continue
+        else:
+            # 무적 카드가 들어간 경우
+            if nowcard == chr(0) or nextcard == chr(0):
+                maxcard = max(nowcard, nextcard)
+                winner = compete(maxcard, maxcard)
 
-        winner = compete(nowCard, nextCard, before)
+                if winner != before:
+                    queue.append(chr(0))
+                    before = winner
+            else:
+                # 일반 카드
+                winner = compete(nowcard, nextcard)
+                queue.append(winner)
 
-        if len(winner) == 1:
-            queue.append(winner)
-        elif winner[1] is not None:
-            before = winner[1]
-            queue.append(chr(0))
-            ans = ans + winner[0]
+        nowgame = nowgame + 1
 
-        nowGame = nowGame + 1
-
-    return ans
+    # 처음 케이스 빼줌
+    return ans-1
 
 
-def compete(cBefore, cNext, bInfo):
+# return Win Character
+def compete(cfirst, cnext):
 
-    result = abs(ord(cBefore)-ord(cNext))
+    result = abs(ord(cfirst)-ord(cnext))
 
-    if result == 0:
-
-        if cBefore == "R":
+    if result == 1:
+        win = "R"
+    elif result == 2:
+        win = "P"
+    elif result == 3:
+        win = "S"
+    else:
+        if cfirst == "R":
             win = "P"
-        elif cBefore == "S":
+        elif cfirst == "S":
             win = "R"
         else:
             win = "S"
-
-        return win, None
-
-    elif result == 1:
-        return "R"
-    elif result == 2:
-        return "P"
-    elif result == 3:
-        return "S"
-    else:
-
-        if bInfo is None:
-            temp = compete(chr(result), chr(result), None)[0]
-            ans = 0
-        else:
-            temp = compete(max(cBefore, cNext), bInfo, None)
-            if temp != bInfo:
-                ans = 1
-
-        return ans, temp
+            
+    return win
 
 
 if __name__ == '__main__':
