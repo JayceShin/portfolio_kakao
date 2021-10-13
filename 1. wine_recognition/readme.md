@@ -177,7 +177,7 @@ mAP@.5 = 0.98539 / mAP@.5:95 = 0.82585
 > recall: 전체 정답 바운딩 박스들 중에서 검출한 것   
 
 📌 *ROC vs PR and AUC*   
-> ROC: x-FPR(FP/FP+TN)-1종오류/ y-TPR(TP/TP+FN)   
+> ROC: x-FPR(FP/FP+TN)/ y-TPR(TP/TP+FN)   
 > PR: x-recall/ y-precision   
 > AUC: 그래프 아래 면적   
 > ROC AUC: 데이터 균형, 양성(나쁜것)과 음성(좋은것)의 탐지 중요도 비슷   
